@@ -7,7 +7,6 @@ import FacilitiesSection from './components/FacilitiesSection';
 import GallerySection from './components/GallerySection';
 import CareersSection from './components/CareersSection';
 import ContactSection from './components/ContactSection';
-import FAQSection from './components/FAQSection';
 import Footer from './components/Footer';
 import AdmissionPopup from './components/AdmissionPopup';
 
@@ -25,7 +24,6 @@ function App() {
         <GallerySection />
         <CareersSection />
         <ContactSection />
-        <FAQSection />
         <Footer />
       </div>
     </>

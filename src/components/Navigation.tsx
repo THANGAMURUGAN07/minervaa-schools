@@ -14,7 +14,6 @@ const Navigation = () => {
     { name: 'Gallery', id: 'gallery', color: 'from-pink-400 to-orange-500' },
     { name: 'Careers', id: 'careers', color: 'from-indigo-400 to-purple-500' },
     { name: 'Contact Us', id: 'contact', color: 'from-red-400 to-orange-500' },
-    { name: 'FAQ', id: 'faq', color: 'from-yellow-400 to-orange-500' },
   ];
 
   useEffect(() => {

@@ -1,5 +1,5 @@
 import ParticlesBackground from './ParticlesBackground';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { Monitor, TestTube, Dumbbell, Bus, BookOpen, Music, X, ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface Facility {
@@ -81,18 +81,6 @@ const facilities: Facility[] = [
 const FacilitiesSection = () => {
   const [isViewAllOpen, setIsViewAllOpen] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
-  // Auto-scroll logic
-  const autoScrollRef = useRef<NodeJS.Timeout | null>(null);
-
-  useEffect(() => {
-    if (autoScrollRef.current) clearInterval(autoScrollRef.current);
-    autoScrollRef.current = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % facilities.length);
-    }, 6500);
-    return () => {
-      if (autoScrollRef.current) clearInterval(autoScrollRef.current);
-    };
-  }, [facilities.length]);
 
   useEffect(() => {
     if (isViewAllOpen) {
