@@ -1,0 +1,178 @@
+import ParticlesBackground from './ParticlesBackground';
+import { useState } from 'react';
+import { ChevronRight, ChevronLeft } from 'lucide-react';
+import { Sparkles, Target, Heart } from 'lucide-react';
+
+const HomeSection = () => {
+  const [showAdmissionsCard, setShowAdmissionsCard] = useState(true);
+  const [cardAnim, setCardAnim] = useState('');
+
+  const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
+  const heroVideoPublicId = import.meta.env.VITE_HERO_VIDEO_PUBLIC_ID;
+  const fallbackMp4 = 'https://res.cloudinary.com/dscbcyysb/video/upload/v1773665591/Video_jw75gz.mp4';
+
+  const cloudinaryBase =
+    cloudName && heroVideoPublicId
+      ? `https://res.cloudinary.com/${cloudName}/video/upload`
+      : '';
+
+  const heroVideoMp4 = cloudinaryBase
+    ? `${cloudinaryBase}/f_auto,q_auto:good,vc_auto/${heroVideoPublicId}.mp4`
+    : fallbackMp4;
+
+  const heroVideoWebm = cloudinaryBase
+    ? `${cloudinaryBase}/f_webm,q_auto:good,vc_auto/${heroVideoPublicId}.webm`
+    : '';
+
+  const heroVideoPoster = cloudinaryBase
+    ? `https://res.cloudinary.com/${cloudName}/video/upload/so_1,f_jpg,q_auto,w_1200/${heroVideoPublicId}.jpg`
+    : "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600'%3E%3Crect fill='%234c1d95' width='1200' height='600'/%3E%3C/svg%3E";
+
+
+  const cards = [
+    {
+      icon: <Target className="w-12 h-12" />,
+      title: 'Vision',
+      description: 'To inspire minds and build future-ready leaders by creating a happy, caring, and stimulating environment.',
+      color: 'from-blue-400 to-cyan-500',
+      bgColor: 'bg-blue-50',
+    },
+    {
+      icon: <Sparkles className="w-12 h-12" />,
+      title: 'Mission',
+      description: 'To provide a comprehensive education that balances academic, emotional, and creative growth, enabling students to achieve their fullest potential.',
+      color: 'from-purple-400 to-pink-500',
+      bgColor: 'bg-purple-50',
+    },
+    {
+      icon: <Heart className="w-12 h-12" />,
+      title: 'Core Values',
+      description: 'The school emphasizes nurturing, growth, and community, often celebrating achievements that reflect empowerment.',
+      color: 'from-orange-400 to-red-500',
+      bgColor: 'bg-orange-50',
+    },
+  ];
+
+  return (
+      <>
+        <section id="home" className="min-h-screen">
+          <div className="relative h-screen flex items-center justify-center overflow-hidden">
+            <ParticlesBackground />
+            {/* Video background with loading spinner */}
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="absolute inset-0 w-full h-full object-cover"
+              poster={heroVideoPoster}
+              preload="auto"
+            >
+              {heroVideoWebm && <source src={heroVideoWebm} type="video/webm" />}
+              <source src={heroVideoMp4} type="video/mp4" />
+            </video>
+
+            {/* Gradient overlay removed for original video color */}
+              {/* Loading overlay and tree animation removed */}
+
+            <div className="relative z-10 text-center px-4 animate-fade-in-up">
+              <h1 className="hero-title text-5xl md:text-8xl text-white mb-6 leading-tight">
+                <span
+                  className="font-extrabold text-white text-5xl md:text-7xl tracking-normal drop-shadow-[0_4px_16px_rgba(0,0,0,0.25)]"
+                  style={{ fontFamily: 'Comic Sans MS, Comic Sans, cursive', letterSpacing: '-0.02em' }}
+                >
+                  Minervaa Vidhya Mandhir
+                </span>
+              </h1>
+              <div className="mb-12 flex items-center justify-center gap-3 text-white">
+                <span className="inline-block">
+                  <Sparkles className="w-7 h-7 text-yellow-400 drop-shadow-md" />
+                </span>
+                <span className="inline-block">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" className="text-purple-500 drop-shadow-md" style={{ verticalAlign: 'middle' }}><path d="M12 2l2.09 6.26L20 9.27l-5 4.87L16.18 21 12 17.77 7.82 21l1.18-6.86-5-4.87 5.91-1.01L12 2z" fill="currentColor"/></svg>
+                </span>
+                <p className="hero-subtitle text-2xl md:text-4xl font-bold text-white tracking-normal drop-shadow-[0_2px_8px_rgba(0,0,0,0.18)]" style={{ letterSpacing: '-0.01em' }}>
+                  Inspiring young Minds
+                </p>
+                <span className="inline-block">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" className="text-yellow-400 drop-shadow-md" style={{ verticalAlign: 'middle' }}><path d="M12 2l2.09 6.26L20 9.27l-5 4.87L16.18 21 12 17.77 7.82 21l1.18-6.86-5-4.87 5.91-1.01L12 2z" fill="currentColor"/></svg>
+                </span>
+                <span className="inline-block">
+                  <Sparkles className="w-7 h-7 text-yellow-400 drop-shadow-md" />
+                </span>
+              </div>
+              {/* Removed Enrollment Form and Contact Us buttons as requested */}
+            </div>
+
+            {/* Animated, colorful, fixed admissions card with minimize functionality */}
+            <div className="fixed right-0 top-0 bottom-0 z-50 flex items-center pointer-events-none">
+              {showAdmissionsCard ? (
+                <div className={`pointer-events-auto animate-fade-in-up flex items-center justify-center w-10 md:w-12 h-[180px] md:h-[220px] transition-transform duration-700 ${cardAnim === 'out' ? 'translate-x-full' : cardAnim === 'in' ? 'translate-x-0' : ''}`}>
+                  <div
+                    className="absolute origin-center rotate-90 w-[180px] md:w-[220px] h-[44px] md:h-[52px] rounded-t-2xl bg-gradient-to-br from-pink-400 via-purple-400 to-blue-400 border-2 border-b-0 border-white shadow-2xl flex flex-row items-center justify-start gap-2 cursor-pointer hover:brightness-110 transition-all px-2"
+                    onClick={() => window.dispatchEvent(new Event('openAdmission'))}
+                  >
+                    <button
+                      className="bg-white/90 hover:bg-white text-purple-700 rounded-full p-1.5 shadow-md flex items-center justify-center -rotate-90"
+                      aria-label="Minimize admissions card"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setCardAnim('out');
+                        setTimeout(() => {
+                          setShowAdmissionsCard(false);
+                          setCardAnim('');
+                        }, 700);
+                      }}
+                    >
+                      <ChevronRight className="w-4 h-4 md:w-5 md:h-5" />
+                    </button>
+                    <span className="flex items-center w-full h-full">
+                      <p className="mr-auto text-left text-xs md:text-sm font-extrabold uppercase tracking-wide text-white drop-shadow-lg whitespace-nowrap">
+                        Admissions open
+                      </p>
+                    </span>
+                  </div>
+                </div>
+              ) : (
+                <div className={`pointer-events-auto animate-fade-in-up transition-transform duration-700 ${cardAnim === 'in' ? 'translate-x-full' : 'translate-x-0'}`}>
+                  <button
+                    className="rounded-l-2xl bg-gradient-to-br from-pink-400 via-purple-400 to-blue-400 border-2 border-r-0 border-white shadow-2xl p-2 animate-gradient-shift flex items-center justify-center w-10 md:w-12 h-20 md:h-24 hover:brightness-110 transition-all"
+                    aria-label="Show admissions card"
+                    onClick={() => {
+                      setShowAdmissionsCard(true);
+                      setCardAnim('in');
+                      setTimeout(() => setCardAnim(''), 700);
+                    }}
+                  >
+                    <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-white" />
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
+        </section>
+
+        {/* Mission, Vision, Core Values Cards moved to a new section below the hero */}
+        <section id="mv-values" className="relative overflow-hidden py-20">
+          <ParticlesBackground />
+          <div className="relative z-10 max-w-7xl mx-auto px-4 grid md:grid-cols-3 gap-8">
+            {cards.map((card, index) => (
+              <div
+                key={index}
+                className={`${card.bgColor} rounded-3xl p-8 shadow-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 animate-fade-in-up`}
+                style={{ animationDelay: `${index * 150}ms` }}
+              >
+                <div className={`bg-gradient-to-br ${card.color} text-white w-20 h-20 rounded-2xl flex items-center justify-center mb-6 shadow-lg`}>
+                  {card.icon}
+                </div>
+                <h3 className="text-2xl font-bold text-gray-800 mb-4">{card.title}</h3>
+                <p className="text-gray-600 leading-relaxed">{card.description}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      </>
+  );
+};
+
+export default HomeSection;
