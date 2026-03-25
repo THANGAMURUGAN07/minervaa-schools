@@ -4,6 +4,8 @@ import { ChevronRight, ChevronLeft } from 'lucide-react';
 import { Sparkles } from 'lucide-react';
 import { getPublicAssetUrl } from '../utils/publicAsset';
 
+const HOME_GROUP_IMAGE_CLOUDINARY_URL = 'https://res.cloudinary.com/dgisxiqun/image/upload/v1774427949/group_s0uylt.jpg';
+
 const HomeSection = () => {
   const [showAdmissionsCard, setShowAdmissionsCard] = useState(true);
   const [cardAnim, setCardAnim] = useState('');
@@ -28,6 +30,8 @@ const HomeSection = () => {
   const heroVideoPoster = cloudinaryBase
     ? `https://res.cloudinary.com/${cloudName}/video/upload/so_1,f_jpg,q_auto,w_1200/${heroVideoPublicId}.jpg`
     : "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600'%3E%3Crect fill='%234c1d95' width='1200' height='600'/%3E%3C/svg%3E";
+
+  const groupImageSrc = HOME_GROUP_IMAGE_CLOUDINARY_URL || getPublicAssetUrl('/group.JPG');
 
 
 
@@ -137,7 +141,7 @@ const HomeSection = () => {
             <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 md:gap-12 items-center">
               <div className="w-full h-full md:h-[420px] md:min-h-[420px] flex md:block justify-center md:justify-start">
                 <img
-                  src={getPublicAssetUrl('/group.JPG')}
+                  src={groupImageSrc}
                   alt="Students group"
                   className="w-full h-full md:h-[420px] md:min-h-[420px] rounded-3xl shadow-xl object-cover object-center md:rounded-3xl md:shadow-xl md:object-cover md:object-center"
                   style={{ minHeight: '320px', minWidth: '100%', maxWidth: '100%', objectFit: 'cover', objectPosition: 'center' }}
