@@ -6,7 +6,10 @@ import { getPublicAssetFallbackUrls } from '../utils/publicAsset';
 const AboutSection = () => {
   const [counters, setCounters] = useState({ years: 0, students: 0, staff: 0, success: 0 });
   const sectionRef = useRef<HTMLDivElement>(null);
-  const founderImageUrls = getPublicAssetFallbackUrls('/mam.jpg');
+  const founderImageUrls = [
+    'https://res.cloudinary.com/dgisxiqun/image/upload/v1774424708/mam_fquw0d.jpg',
+    ...getPublicAssetFallbackUrls('/mam.jpg'),
+  ];
 
   useEffect(() => {
     let hasAnimated = false;

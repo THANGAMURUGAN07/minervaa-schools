@@ -54,7 +54,7 @@ const facilities: Facility[] = [
 		icon: <TestTube className="w-12 h-12" />,
 		title: 'Laboratories',
 		color: 'from-green-500 to-emerald-500',
-		image: '/lab2.jpg',
+		image: 'https://res.cloudinary.com/dgisxiqun/image/upload/v1774425343/lab2_jsu9xq.jpg',
 		overview: '',
 		technology: 'Fully equipped science and computer laboratories that promote practical learning and innovation.',
 		experience: '',
