@@ -2,6 +2,7 @@ import ParticlesBackground from './ParticlesBackground';
 import { useEffect, useState } from 'react';
 import { Monitor, TestTube, Dumbbell, Bus, BookOpen, Shield, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useScrollFadeIn } from './useScrollFadeIn';
+import { getPublicAssetUrl } from '../utils/publicAsset';
 
 interface LabSection {
 	title: string;
@@ -120,28 +121,28 @@ const facilities: Facility[] = [
 // Helper to get the correct image for a facility, with fallback for Smart Classrooms
 const getFacilityImage = (facility: Facility) => {
   if (facility.title === 'Smart Classrooms') {
-    return facility.image || '/smartclassroom.JPG';
+		return getPublicAssetUrl(facility.image || '/smartclassroom.JPG');
   }
-  return facility.image;
+	return getPublicAssetUrl(facility.image);
 };
 // Update getFacilityViewAllImage helper:
 const getFacilityViewAllImage = (facility: Facility) => {
   if (facility.title === 'Smart Classrooms') {
-    return '/smartclassroom2.JPG';
+		return getPublicAssetUrl('/smartclassroom2.JPG');
   }
   if (facility.title === 'Library') {
-    return facility.viewAllImage || facility.image;
+		return getPublicAssetUrl(facility.viewAllImage || facility.image);
   }
   if (facility.title === 'Transportation') {
-    return facility.viewAllImage || facility.image;
+		return getPublicAssetUrl(facility.viewAllImage || facility.image);
   }
   if (facility.title === 'Playgrounds') {
-    return facility.viewAllImage || facility.image;
+		return getPublicAssetUrl(facility.viewAllImage || facility.image);
   }
   if (facility.title === 'Safety & Security') {
-    return facility.viewAllImage || facility.image;
+		return getPublicAssetUrl(facility.viewAllImage || facility.image);
   }
-  return facility.viewAllImage || facility.image;
+	return getPublicAssetUrl(facility.viewAllImage || facility.image);
 };
 
 const getFacilityTheme = (title: string) => {
@@ -259,7 +260,7 @@ const renderFacilityDetails = (facility: Facility) => (
               }`}
             >
               <img
-                src={lab.image}
+								src={getPublicAssetUrl(lab.image)}
                 alt={lab.title}
                 className="w-full md:w-[48%] h-56 sm:h-64 md:h-72 rounded-xl object-cover"
               />

@@ -1,6 +1,7 @@
 import ParticlesBackground from './ParticlesBackground';
 import { useState } from 'react';
 import { Image, Video, Play } from 'lucide-react';
+import { getPublicAssetUrl } from '../utils/publicAsset';
 
 const GallerySection = () => {
   const [activeTab, setActiveTab] = useState<'images' | 'videos'>('images');
@@ -127,7 +128,7 @@ const GallerySection = () => {
               >
                 <div className="relative h-48 overflow-hidden">
                   <img
-                    src={event.thumbnail}
+                    src={getPublicAssetUrl(event.thumbnail)}
                     alt={event.title}
                     className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
                   />

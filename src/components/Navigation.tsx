@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+import { getPublicAssetUrl } from '../utils/publicAsset';
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -60,7 +61,7 @@ const Navigation = () => {
         <div className="flex justify-between items-center h-20">
           <div className="flex items-center space-x-3">
             <img
-              src="/Logo.png"
+              src={getPublicAssetUrl('/Logo.png')}
               alt="Minervaa Vidhya Mandhir logo"
               className="h-14 w-auto object-contain flex-shrink-0"
             />

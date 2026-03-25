@@ -1,4 +1,5 @@
 import { SiFacebook, SiInstagram, SiYoutube } from 'react-icons/si';
+import { getPublicAssetUrl } from '../utils/publicAsset';
 
 const Footer = () => {
   const scrollToSection = (id: string) => {
@@ -28,7 +29,7 @@ const Footer = () => {
           <div>
             <div className="mb-6 inline-flex bg-white rounded-2xl shadow-md px-3 py-2">
               <img
-                src="/Logo.png"
+                src={getPublicAssetUrl('/Logo.png')}
                 alt="Minervaa Vidhya Mandhir logo"
                 className="h-16 w-auto object-contain"
               />

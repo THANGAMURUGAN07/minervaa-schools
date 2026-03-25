@@ -1,6 +1,7 @@
 import ParticlesBackground from './ParticlesBackground';
 import { useEffect, useState, useRef } from 'react';
 import { Award, Users, GraduationCap, Shield, Lightbulb, Heart, BookOpen, Trophy, Eye, Flag } from 'lucide-react';
+import { getPublicAssetUrl } from '../utils/publicAsset';
 
 const AboutSection = () => {
   const [counters, setCounters] = useState({ years: 0, students: 0, staff: 0, success: 0 });
@@ -160,7 +161,7 @@ const AboutSection = () => {
 
             <div className="w-full flex flex-col items-center mx-auto">
               <img
-                src="/mam.JPG"
+                src={getPublicAssetUrl('/mam.JPG')}
                 alt="Founder and Correspondent Suganthi Jambulingam"
                 className="w-full max-w-[280px] object-cover"
               />

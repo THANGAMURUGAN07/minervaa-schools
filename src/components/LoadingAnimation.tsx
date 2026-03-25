@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import './LoadingAnimation.css';
+import { getPublicAssetUrl } from '../utils/publicAsset';
 
 const LoadingAnimation = () => {
   const [visible, setVisible] = useState(true);
@@ -14,7 +15,7 @@ const LoadingAnimation = () => {
   return (
     <div className="loading-overlay">
       <img
-        src="/tree.png"
+        src={getPublicAssetUrl('/tree.png')}
         alt="Loading Tree"
         className="tree-animation"
       />

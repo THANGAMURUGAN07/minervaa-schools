@@ -2,6 +2,7 @@ import ParticlesBackground from './ParticlesBackground';
 import { useState } from 'react';
 import { ChevronRight, ChevronLeft } from 'lucide-react';
 import { Sparkles } from 'lucide-react';
+import { getPublicAssetUrl } from '../utils/publicAsset';
 
 const HomeSection = () => {
   const [showAdmissionsCard, setShowAdmissionsCard] = useState(true);
@@ -136,7 +137,7 @@ const HomeSection = () => {
             <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 md:gap-12 items-center">
               <div className="w-full h-full md:h-[420px] md:min-h-[420px] flex md:block justify-center md:justify-start">
                 <img
-                  src="/group.JPG"
+                  src={getPublicAssetUrl('/group.JPG')}
                   alt="Students group"
                   className="w-full h-full md:h-[420px] md:min-h-[420px] rounded-3xl shadow-xl object-cover object-center md:rounded-3xl md:shadow-xl md:object-cover md:object-center"
                   style={{ minHeight: '320px', minWidth: '100%', maxWidth: '100%', objectFit: 'cover', objectPosition: 'center' }}
