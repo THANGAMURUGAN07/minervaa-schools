@@ -1,11 +1,12 @@
 import ParticlesBackground from './ParticlesBackground';
 import { useEffect, useState, useRef } from 'react';
 import { Award, Users, GraduationCap, Shield, Lightbulb, Heart, BookOpen, Trophy, Eye, Flag } from 'lucide-react';
-import { getPublicAssetUrl } from '../utils/publicAsset';
+import { getPublicAssetFallbackUrls } from '../utils/publicAsset';
 
 const AboutSection = () => {
   const [counters, setCounters] = useState({ years: 0, students: 0, staff: 0, success: 0 });
   const sectionRef = useRef<HTMLDivElement>(null);
+  const founderImageUrls = getPublicAssetFallbackUrls('/mam.jpg');
 
   useEffect(() => {
     let hasAnimated = false;
@@ -161,7 +162,15 @@ const AboutSection = () => {
 
             <div className="w-full flex flex-col items-center mx-auto">
               <img
-                src={getPublicAssetUrl('/mam.JPG')}
+                src={founderImageUrls[0]}
+                onError={(e) => {
+                  const target = e.currentTarget;
+                  const nextIndex = Number(target.dataset.fallbackIndex || '0') + 1;
+                  if (nextIndex < founderImageUrls.length) {
+                    target.dataset.fallbackIndex = String(nextIndex);
+                    target.src = founderImageUrls[nextIndex];
+                  }
+                }}
                 alt="Founder and Correspondent Suganthi Jambulingam"
                 className="w-full max-w-[280px] object-cover"
               />

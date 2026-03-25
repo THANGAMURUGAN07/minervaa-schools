@@ -5,3 +5,11 @@ export const getPublicAssetUrl = (path: string): string => {
 
   return `${normalizedBase}${normalizedPath}`;
 };
+
+export const getPublicAssetFallbackUrls = (path: string): string[] => {
+  const normalizedPath = path.replace(/^\/+/, '');
+  const primary = getPublicAssetUrl(path);
+  const rootRelative = `/${normalizedPath}`;
+
+  return primary === rootRelative ? [primary] : [primary, rootRelative];
+};

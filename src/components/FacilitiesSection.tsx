@@ -2,7 +2,7 @@ import ParticlesBackground from './ParticlesBackground';
 import { useEffect, useState } from 'react';
 import { Monitor, TestTube, Dumbbell, Bus, BookOpen, Shield, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useScrollFadeIn } from './useScrollFadeIn';
-import { getPublicAssetUrl } from '../utils/publicAsset';
+import { getPublicAssetFallbackUrls, getPublicAssetUrl } from '../utils/publicAsset';
 
 interface LabSection {
 	title: string;
@@ -54,7 +54,7 @@ const facilities: Facility[] = [
 		icon: <TestTube className="w-12 h-12" />,
 		title: 'Laboratories',
 		color: 'from-green-500 to-emerald-500',
-		image: '/lab2.JPG',
+		image: '/lab2.jpg',
 		overview: '',
 		technology: 'Fully equipped science and computer laboratories that promote practical learning and innovation.',
 		experience: '',
@@ -118,13 +118,6 @@ const facilities: Facility[] = [
 	},
 ];
 
-// Helper to get the correct image for a facility, with fallback for Smart Classrooms
-const getFacilityImage = (facility: Facility) => {
-  if (facility.title === 'Smart Classrooms') {
-		return getPublicAssetUrl(facility.image || '/smartclassroom.JPG');
-  }
-	return getPublicAssetUrl(facility.image);
-};
 // Update getFacilityViewAllImage helper:
 const getFacilityViewAllImage = (facility: Facility) => {
   if (facility.title === 'Smart Classrooms') {
@@ -143,6 +136,17 @@ const getFacilityViewAllImage = (facility: Facility) => {
 		return getPublicAssetUrl(facility.viewAllImage || facility.image);
   }
 	return getPublicAssetUrl(facility.viewAllImage || facility.image);
+};
+
+const getFacilityImageFallbackUrls = (facility: Facility) => {
+	const primaryPath = facility.title === 'Smart Classrooms' ? (facility.image || '/smartclassroom.JPG') : facility.image;
+	const secondaryPath = facility.viewAllImage || facility.image;
+	const urls = [
+		...getPublicAssetFallbackUrls(primaryPath),
+		...getPublicAssetFallbackUrls(secondaryPath),
+	];
+
+	return Array.from(new Set(urls));
 };
 
 const getFacilityTheme = (title: string) => {
@@ -343,8 +347,21 @@ const FacilitiesSection = () => {
 														? 'w-[12vw] min-w-[44px] sm:w-[100px] md:w-[118px] lg:w-[125px] opacity-95'
 														: 'w-[9vw] min-w-[34px] lg:w-[88px] xl:w-[98px] opacity-85'
 											}`}
-											style={{ backgroundImage: `url(${getFacilityImage(facility)})` }}
 										>
+											<img
+												src={getFacilityImageFallbackUrls(facility)[0]}
+												onError={(e) => {
+													const target = e.currentTarget;
+													const fallbackUrls = getFacilityImageFallbackUrls(facility);
+													const nextIndex = Number(target.dataset.fallbackIndex || '0') + 1;
+													if (nextIndex < fallbackUrls.length) {
+														target.dataset.fallbackIndex = String(nextIndex);
+														target.src = fallbackUrls[nextIndex];
+													}
+												}}
+												alt={facility.title}
+												className="absolute inset-0 w-full h-full object-cover rounded-lg"
+											/>
 											<div className="absolute inset-0 bg-black/30 rounded-lg" />
 
 											<div className="absolute z-10 left-0 right-0 bottom-0 flex flex-col items-center px-2 pb-4 sm:pb-8 text-center">
