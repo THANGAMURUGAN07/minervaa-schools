@@ -54,7 +54,7 @@ const facilities: Facility[] = [
 		icon: <TestTube className="w-12 h-12" />,
 		title: 'Laboratories',
 		color: 'from-green-500 to-emerald-500',
-		image: 'https://res.cloudinary.com/dgisxiqun/image/upload/v1774425343/lab2_jsu9xq.jpg',
+		image: '/lab.JPG',
 		overview: '',
 		technology: 'Fully equipped science and computer laboratories that promote practical learning and innovation.',
 		experience: '',
@@ -118,8 +118,18 @@ const facilities: Facility[] = [
 	},
 ];
 
-const resolveImageUrl = (value: string) =>
-	/^https?:\/\//i.test(value) ? value : getPublicAssetUrl(value);
+const resolveImageUrl = (value: string) => {
+	if (!/^https?:\/\//i.test(value)) {
+		return getPublicAssetUrl(value);
+	}
+
+	// Apply Cloudinary auto optimization for faster delivery when a direct URL is used.
+	if (value.includes('res.cloudinary.com/') && value.includes('/image/upload/')) {
+		return value.replace('/image/upload/', '/image/upload/f_auto,q_auto,w_1200/');
+	}
+
+	return value;
+};
 
 const getFacilityTheme = (title: string) => {
 	switch (title) {
@@ -178,11 +188,13 @@ const AnimatedFacilityCard = ({ facility, index }: { facility: Facility; index: 
           <>
             {facility.title !== 'Laboratories' && (
               <div className="flex-1 flex items-center justify-center order-1" {...imageFade}>
-								<img
-														src={resolveImageUrl(facility.viewAllImage || facility.image)}
-									alt={facility.title}
-									className="rounded-2xl w-full object-cover shadow-lg"
-								/>
+										<img
+											src={resolveImageUrl(facility.viewAllImage || facility.image)}
+											alt={facility.title}
+											className="rounded-2xl w-full object-cover shadow-lg"
+											loading="lazy"
+											decoding="async"
+										/>
               </div>
             )}
 						<div className={`flex-1 flex flex-col justify-center order-2 rounded-2xl border p-6 ${theme.panel}`} {...textFade}>
@@ -204,11 +216,13 @@ const AnimatedFacilityCard = ({ facility, index }: { facility: Facility; index: 
             </div>
             {facility.title !== 'Laboratories' && (
               <div className="flex-1 flex items-center justify-center order-1 lg:order-2" {...imageFade}>
-								<img
-														src={resolveImageUrl(facility.viewAllImage || facility.image)}
-									alt={facility.title}
-									className="rounded-2xl w-full object-cover shadow-lg"
-								/>
+										<img
+											src={resolveImageUrl(facility.viewAllImage || facility.image)}
+											alt={facility.title}
+											className="rounded-2xl w-full object-cover shadow-lg"
+											loading="lazy"
+											decoding="async"
+										/>
               </div>
             )}
           </>
@@ -235,11 +249,13 @@ const renderFacilityDetails = (facility: Facility) => (
                 index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
               }`}
             >
-              <img
+							<img
 								src={resolveImageUrl(lab.image)}
-                alt={lab.title}
-                className="w-full md:w-[48%] h-56 sm:h-64 md:h-72 rounded-xl object-cover"
-              />
+								alt={lab.title}
+								className="w-full md:w-[48%] h-56 sm:h-64 md:h-72 rounded-xl object-cover"
+								loading="lazy"
+								decoding="async"
+							/>
               <div className="flex-1 text-left flex flex-col justify-center">
                 <p className="text-gray-900 font-bold text-2xl mb-3">{lab.title}</p>
                 <p className="text-gray-700 text-base sm:text-lg leading-relaxed">{lab.description}</p>
@@ -321,9 +337,11 @@ const FacilitiesSection = () => {
 											}`}
 										>
 											<img
-														src={resolveImageUrl(facility.image)}
+												src={resolveImageUrl(facility.image)}
 												alt={facility.title}
 												className="absolute inset-0 w-full h-full object-cover rounded-lg"
+												loading={isCenter ? 'eager' : 'lazy'}
+												decoding="async"
 											/>
 											<div className="absolute inset-0 bg-black/30 rounded-lg" />
 

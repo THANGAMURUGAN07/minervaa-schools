@@ -1,52 +1,46 @@
 import ParticlesBackground from './ParticlesBackground';
-import { useState, useEffect } from 'react';
-import { BookOpen, Target, Trophy, Palette, Music, Dumbbell, Rocket, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useState } from 'react';
+import { BookOpen, Target, Trophy, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const AcademicsSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const programs = [
     {
-      title: 'Pre School – KGs',
-      description: 'Play based learning environment developing social and motor skills.',
+      title: 'Foundational stage (Pre – Primary)',
+      description: 'Where Little Minds Begin Their Big Journey',
       gradient: 'from-yellow-400 to-orange-500',
       features: [
-        { icon: <Palette className="w-6 h-6" />, text: 'Play based learning' },
-        { icon: <Palette className="w-6 h-6" />, text: 'Creative arts' },
-        { icon: <Music className="w-6 h-6" />, text: 'Music and movement' },
-        { icon: <Target className="w-6 h-6" />, text: 'Social development' },
+        { icon: <span className="text-2xl">🎨</span>, text: 'Creative Expression' },
+        { icon: <span className="text-2xl">🎶</span>, text: 'Music & Movement' },
+        { icon: <span className="text-2xl">🤝</span>, text: 'Social Development' },
+        { icon: <span className="text-2xl">🧩</span>, text: 'Play-Based Learning' },
       ],
     },
     {
       title: 'Primary School – Grades 1-5',
-      description: 'Strong academic foundations with curiosity driven learning.',
+      description: 'Building Strong Foundations for Lifelong Learning',
       gradient: 'from-green-400 to-teal-500',
       features: [
-        { icon: <BookOpen className="w-6 h-6" />, text: 'Core subjects' },
-        { icon: <Rocket className="w-6 h-6" />, text: 'STEM projects' },
-        { icon: <BookOpen className="w-6 h-6" />, text: 'Reading programs' },
-        { icon: <Dumbbell className="w-6 h-6" />, text: 'Sports activities' },
+        { icon: <span className="text-2xl">📖</span>, text: 'Core Academics' },
+        { icon: <span className="text-2xl">📚</span>, text: 'Reading Programs' },
+        { icon: <span className="text-2xl">⚽</span>, text: 'Sports & Activities' },
       ],
     },
     {
-      title: 'Middle & High School – Grades 6-8',
-      description: 'Advanced curriculum preparing students for higher education.',
+      title: 'Middle school – Grades 6 -8',
+      description: 'Preparing Students for Future Success Highlights',
       gradient: 'from-blue-400 to-purple-500',
       features: [
-        { icon: <BookOpen className="w-6 h-6" />, text: 'Advanced subjects' },
-        { icon: <Target className="w-6 h-6" />, text: 'Career counseling' },
-        { icon: <Trophy className="w-6 h-6" />, text: 'Competitive exam preparation' },
-        { icon: <Target className="w-6 h-6" />, text: 'Leadership programs' },
+        { icon: <span className="text-2xl">📊</span>, text: 'Advanced Curriculum' },
+        { icon: <span className="text-2xl">🏆</span>, text: 'Competitive Exam Preparation' },
+        { icon: <span className="text-2xl">🎯</span>, text: 'Career Guidance' },
+        { icon: <span className="text-2xl">🌟</span>, text: 'Leadership Development' },
       ],
     },
   ];
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % programs.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [programs.length]);
+
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % programs.length);
@@ -112,16 +106,27 @@ const AcademicsSection = () => {
             >
               {programs.map((program, index) => (
                 <div key={index} className="w-full flex-shrink-0 px-4">
-                  <div className={`bg-gradient-to-br ${program.gradient} rounded-3xl p-12 text-white shadow-2xl`}>
-                    <h4 className="text-4xl font-bold mb-4">{program.title}</h4>
-                    <p className="text-xl mb-8 opacity-90">{program.description}</p>
-                    <div className="grid md:grid-cols-2 gap-4">
-                      {program.features.map((feature, idx) => (
-                        <div key={idx} className="flex items-center space-x-3 bg-white/20 backdrop-blur-sm rounded-xl p-4">
-                          <div className="flex-shrink-0">{feature.icon}</div>
-                          <span className="font-medium">{feature.text}</span>
-                        </div>
-                      ))}
+                  <div
+                    className={`relative bg-white/60 dark:bg-white/30 border border-white/40 shadow-2xl rounded-3xl p-12 transition-transform duration-300 hover:scale-105 hover:shadow-3xl backdrop-blur-xl overflow-hidden group`}
+                    style={{ boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.18)' }}
+                  >
+                    <div className={`absolute inset-0 z-0 bg-gradient-to-br ${program.gradient} opacity-30 rounded-3xl pointer-events-none`} />
+                    <div className="relative z-10">
+                      <h4 className="text-4xl font-extrabold mb-6 text-gray-900 drop-shadow-lg dark:text-white">{program.title}</h4>
+                      {program.description && (
+                        <p className="text-xl mb-8 opacity-90 text-gray-700 dark:text-gray-200">{program.description}</p>
+                      )}
+                      <div className="grid md:grid-cols-2 gap-5">
+                        {program.features.map((feature, idx) => (
+                          <div
+                            key={idx}
+                            className="flex items-center space-x-4 bg-white/60 dark:bg-white/30 backdrop-blur-md rounded-2xl p-5 border border-white/40 shadow group-hover:bg-white/80 transition-all duration-300"
+                          >
+                            <div className="flex-shrink-0 text-3xl md:text-4xl">{feature.icon}</div>
+                            <span className="font-semibold text-lg md:text-xl text-gray-800 dark:text-gray-900">{feature.text}</span>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>

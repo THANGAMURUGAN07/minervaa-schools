@@ -1,18 +1,20 @@
 import ParticlesBackground from './ParticlesBackground';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ChevronRight, ChevronLeft } from 'lucide-react';
 import { Sparkles } from 'lucide-react';
 import { getPublicAssetUrl } from '../utils/publicAsset';
 
-const HOME_GROUP_IMAGE_CLOUDINARY_URL = 'https://res.cloudinary.com/dgisxiqun/image/upload/v1774427949/group_s0uylt.jpg';
+const HOME_GROUP_IMAGE_CLOUDINARY_URL = '\group.JPG';
 
 const HomeSection = () => {
   const [showAdmissionsCard, setShowAdmissionsCard] = useState(true);
   const [cardAnim, setCardAnim] = useState('');
+  const [shouldLoadHeroVideo, setShouldLoadHeroVideo] = useState(false);
+  const [videoLoadFailed, setVideoLoadFailed] = useState(false);
 
   const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
   const heroVideoPublicId = import.meta.env.VITE_HERO_VIDEO_PUBLIC_ID;
-  const fallbackMp4 = 'https://res.cloudinary.com/dscbcyysb/video/upload/v1773665591/Video_jw75gz.mp4';
+  const fallbackMp4 = '\Video.mp4';
 
   const cloudinaryBase =
     cloudName && heroVideoPublicId
@@ -20,18 +22,21 @@ const HomeSection = () => {
       : '';
 
   const heroVideoMp4 = cloudinaryBase
-    ? `${cloudinaryBase}/f_auto,q_auto:good,vc_auto/${heroVideoPublicId}.mp4`
+    ? `${cloudinaryBase}/f_mp4,q_auto:eco,vc_auto,w_1280/${heroVideoPublicId}.mp4`
     : fallbackMp4;
-
-  const heroVideoWebm = cloudinaryBase
-    ? `${cloudinaryBase}/f_webm,q_auto:good,vc_auto/${heroVideoPublicId}.webm`
-    : '';
 
   const heroVideoPoster = cloudinaryBase
     ? `https://res.cloudinary.com/${cloudName}/video/upload/so_1,f_jpg,q_auto,w_1200/${heroVideoPublicId}.jpg`
     : "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600'%3E%3Crect fill='%234c1d95' width='1200' height='600'/%3E%3C/svg%3E";
 
   const groupImageSrc = HOME_GROUP_IMAGE_CLOUDINARY_URL || getPublicAssetUrl('/group.JPG');
+
+
+  useEffect(() => {
+    // Defer heavy video source loading slightly to improve first render responsiveness.
+    const timer = window.setTimeout(() => setShouldLoadHeroVideo(true), 350);
+    return () => window.clearTimeout(timer);
+  }, []);
 
 
 
@@ -49,10 +54,10 @@ const HomeSection = () => {
               playsInline
               className="absolute inset-0 w-full h-full object-cover"
               poster={heroVideoPoster}
-              preload="auto"
+              preload="metadata"
+              onError={() => setVideoLoadFailed(true)}
             >
-              {heroVideoWebm && <source src={heroVideoWebm} type="video/webm" />}
-              <source src={heroVideoMp4} type="video/mp4" />
+              {shouldLoadHeroVideo && !videoLoadFailed && <source src={heroVideoMp4} type="video/mp4" />}
             </video>
 
             {/* Gradient overlay removed for original video color */}
@@ -145,6 +150,8 @@ const HomeSection = () => {
                   alt="Students group"
                   className="w-full h-full md:h-[420px] md:min-h-[420px] rounded-3xl shadow-xl object-cover object-center md:rounded-3xl md:shadow-xl md:object-cover md:object-center"
                   style={{ minHeight: '320px', minWidth: '100%', maxWidth: '100%', objectFit: 'cover', objectPosition: 'center' }}
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
               <div>
