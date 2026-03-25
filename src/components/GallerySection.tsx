@@ -78,11 +78,11 @@ const GallerySection = () => {
   ];
 
   return (
-    <section id="gallery" className="relative overflow-hidden py-20 bg-gradient-to-b from-pink-50 to-yellow-50">
+    <section id="gallery" className="relative overflow-hidden py-20">
       <ParticlesBackground />
-      <div className="relative z-10 max-w-7xl mx-auto px-4">
+      <div className="relative z-10 max-w-[95rem] mx-auto px-2 sm:px-3 lg:px-4">
         <div className="text-center mb-12">
-          <h2 className="text-5xl font-bold section-title-shine mb-6">Our Gallery</h2>
+          <h2 className="text-5xl font-bold mb-6" style={{ color: '#1E3F8A' }}>Our Gallery</h2>
           <p className="text-xl text-gray-600">Capturing moments of joy, learning, and growth</p>
         </div>
 
@@ -92,7 +92,7 @@ const GallerySection = () => {
               onClick={() => setActiveTab('images')}
               className={`px-8 py-3 rounded-full font-bold transition-all duration-300 flex items-center space-x-2 ${
                 activeTab === 'images'
-                  ? 'bg-gradient-to-r from-pink-500 to-orange-500 text-white shadow-lg'
+                  ? 'bg-indigo-600 text-white shadow-lg hover:bg-indigo-700'
                   : 'text-gray-600 hover:text-gray-800'
               }`}
             >
@@ -105,7 +105,7 @@ const GallerySection = () => {
               onClick={() => setActiveTab('videos')}
               className={`px-8 py-3 rounded-full font-bold transition-all duration-300 flex items-center space-x-2 ${
                 activeTab === 'videos'
-                  ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg'
+                  ? 'bg-indigo-600 text-white shadow-lg hover:bg-indigo-700'
                   : 'text-gray-600 hover:text-gray-800'
               }`}
             >

@@ -150,6 +150,15 @@ body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Soft diagonal abstract background pattern */
+  background-color: #f5f7fa;
+  background-image:
+    linear-gradient(120deg, rgba(200,210,230,0.18) 10%, transparent 70%),
+    linear-gradient(120deg, rgba(180,190,210,0.12) 30%, transparent 80%),
+    linear-gradient(120deg, rgba(220,230,245,0.22) 0%, transparent 60%),
+    linear-gradient(120deg, rgba(180,200,230,0.10) 60%, transparent 100%);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
 
 .hero-title {

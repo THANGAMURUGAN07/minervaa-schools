@@ -316,7 +316,7 @@ const AdmissionPopup = () => {
                         />
                       </div>
                       <div>
-                        <label className="mb-1 block text-sm font-semibold text-gray-700">Sex *</label>
+                        <label className="mb-1 block text-sm font-semibold text-gray-700">Gender *</label>
                         <select
                           name="sex"
                           value={formData.sex}

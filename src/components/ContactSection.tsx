@@ -4,41 +4,48 @@ import { SiFacebook, SiInstagram, SiYoutube } from 'react-icons/si';
 
 const ContactSection = () => {
   return (
-    <section id="contact" className="relative overflow-hidden py-20 bg-gradient-to-b from-yellow-50 to-green-50">
+    <section id="contact" className="relative overflow-hidden py-20">
       <ParticlesBackground />
-      <div className="relative z-10 max-w-7xl mx-auto px-4">
+      <div className="relative z-10 max-w-[95rem] mx-auto px-2 sm:px-3 lg:px-4">
         <div className="text-center mb-16">
-          <h2 className="text-5xl font-bold section-title-shine mb-6">Get In Touch</h2>
-          <p className="text-xl text-gray-600">Visit us, call us, or connect with us online for admissions and school information.</p>
+          <h2 className="text-5xl font-bold mb-6" style={{ color: '#1E3F8A' }}>Get In Touch</h2>
+          <p className="text-xl text-gray-600">We’re here to guide you every step of the way in your child’s learning journey. Whether you have questions about admissions, curriculum, or campus life — feel free to reach out to us anytime.</p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12">
-          <div className="bg-white rounded-3xl p-8 shadow-xl">
-            <h3 className="text-3xl font-bold text-gray-800 mb-6">Words That Guide Our Learning</h3>
-            <p className="text-gray-600 leading-relaxed mb-8">
-              Education at Minervaa is not only about marks; it is about character, curiosity, and confidence for life.
-            </p>
+          <div className="bg-white rounded-3xl p-8 shadow-xl flex flex-col gap-6">
+            <h3 className="text-3xl font-bold text-blue-900 mb-2 flex items-center gap-2">
+              <span role="img" aria-label="phone">📞</span> Let’s Connect
+            </h3>
+            <div className="mt-2">
+              <p className="text-lg text-gray-700 mb-2">Have a query or need assistance?<br />Our team is always happy to help you.</p>
+              <ul className="list-none space-y-2 text-base text-gray-700 mb-4">
+                <li className="flex items-center gap-2"><span role="img" aria-label="location">📍</span> Visit our campus for a personalized experience</li>
+                <li className="flex items-center gap-2"><span role="img" aria-label="phone">📞</span> Call us for quick support and information</li>
+                <li className="flex items-center gap-2"><span role="img" aria-label="chat">💬</span> Connect with us online for instant assistance</li>
+              </ul>
+              <h4 className="text-xl font-semibold text-blue-900 mt-4 flex items-center gap-2">
+                <span role="img" aria-label="mail">📩</span> We’d Love to Hear From You
+              </h4>
+              <p className="text-base text-gray-700">
+                Fill out the form or reach out to us directly —<br />
+                Let’s take the first step together towards a brighter future for your child.
+              </p>
+            </div>
 
-            <div className="space-y-5">
-              <blockquote className="rounded-2xl border border-blue-100 bg-blue-50 p-5">
-                <p className="text-lg font-semibold text-gray-800">"Education is the most powerful weapon which you can use to change the world."</p>
-                <footer className="mt-2 text-sm text-blue-700">- Nelson Mandela</footer>
-              </blockquote>
-
-              <blockquote className="rounded-2xl border border-green-100 bg-green-50 p-5">
-                <p className="text-lg font-semibold text-gray-800">"The beautiful thing about learning is that no one can take it away from you."</p>
-                <footer className="mt-2 text-sm text-green-700">- B.B. King</footer>
-              </blockquote>
-
-              <blockquote className="rounded-2xl border border-orange-100 bg-orange-50 p-5">
-                <p className="text-lg font-semibold text-gray-800">"A child's mind is not a container to be filled, but a lamp to be lit."</p>
-                <footer className="mt-2 text-sm text-orange-700">- Plutarch</footer>
-              </blockquote>
-
-              <blockquote className="rounded-2xl border border-purple-100 bg-purple-50 p-5">
-                <p className="text-lg font-semibold text-gray-800">"Education is not preparation for life; education is life itself."</p>
-                <footer className="mt-2 text-sm text-purple-700">- John Dewey</footer>
-              </blockquote>
+            {/* Parent Testimonials Section */}
+            <div className="w-full mt-8">
+              <h3 className="text-2xl font-bold text-blue-900 mb-4 text-center">Parent Testimonials</h3>
+              <div className="space-y-6">
+                <blockquote className="bg-blue-50 border-l-4 border-blue-400 p-4 rounded-xl text-gray-800">
+                  <p className="mb-2">"Minervaa Vidhya Mandhir has provided a strong academic foundation for our child. The teachers are disciplined, caring and focused on concept clarity. We are happy with the progress and overall development."</p>
+                  <footer className="text-sm text-blue-700">– Parent of Primary Grade Student</footer>
+                </blockquote>
+                <blockquote className="bg-blue-50 border-l-4 border-blue-400 p-4 rounded-xl text-gray-800">
+                  <p className="mb-2">"The school maintains excellent discipline and communication. We appreciate the individual attention given to students and the structured academic approach followed throughout the year."</p>
+                  <footer className="text-sm text-blue-700">– Parent of Upper Primary Student</footer>
+                </blockquote>
+              </div>
             </div>
           </div>
 

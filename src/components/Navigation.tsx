@@ -7,13 +7,13 @@ const Navigation = () => {
   const [activeSection, setActiveSection] = useState('home');
 
   const navItems = [
-    { name: 'Home', id: 'home', color: 'from-orange-400 to-pink-500' },
-    { name: 'About Us', id: 'about', color: 'from-blue-400 to-cyan-500' },
-    { name: 'Academics', id: 'academics', color: 'from-green-400 to-teal-500' },
-    { name: 'Facilities', id: 'facilities', color: 'from-purple-400 to-pink-500' },
-    { name: 'Gallery', id: 'gallery', color: 'from-pink-400 to-orange-500' },
-    { name: 'Careers', id: 'careers', color: 'from-indigo-400 to-purple-500' },
-    { name: 'Contact Us', id: 'contact', color: 'from-red-400 to-orange-500' },
+    { name: 'Home', id: 'home' },
+    { name: 'About Us', id: 'about' },
+    { name: 'Academics', id: 'academics' },
+    { name: 'Facilities', id: 'facilities' },
+    { name: 'Gallery', id: 'gallery' },
+    { name: 'Careers', id: 'careers' },
+    { name: 'Contact Us', id: 'contact' },
   ];
 
   useEffect(() => {
@@ -56,7 +56,7 @@ const Navigation = () => {
         isScrolled ? 'bg-white shadow-lg' : 'bg-white/95 backdrop-blur-sm'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[95rem] mx-auto px-2 sm:px-3 lg:px-4">
         <div className="flex justify-between items-center h-20">
           <div className="flex items-center space-x-3">
             <img
@@ -75,8 +75,8 @@ const Navigation = () => {
                   onClick={() => scrollToSection(item.id)}
                   className={`px-4 py-2 font-medium transition-all duration-300 rounded-lg ${
                     isActive
-                      ? `bg-gradient-to-r ${item.color} text-white shadow-lg scale-105`
-                      : 'text-gray-700 hover:text-orange-500 hover:bg-orange-50'
+                      ? 'bg-[#1E3F8A] text-white shadow-lg scale-105'
+                      : 'text-gray-700 hover:text-[#1E3F8A] hover:bg-[#e6ecfa]'
                   }`}
                 >
                   {item.name}
@@ -105,8 +105,8 @@ const Navigation = () => {
                   onClick={() => scrollToSection(item.id)}
                   className={`block w-full text-left px-4 py-3 font-medium rounded-lg transition-all duration-300 ${
                     isActive
-                      ? `bg-gradient-to-r ${item.color} text-white shadow-lg`
-                      : 'text-gray-700 hover:bg-orange-50 hover:text-orange-500'
+                      ? 'bg-[#1E3F8A] text-white shadow-lg'
+                      : 'text-gray-700 hover:bg-[#e6ecfa] hover:text-[#1E3F8A]'
                   }`}
                 >
                   {item.name}

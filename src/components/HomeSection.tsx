@@ -1,7 +1,7 @@
 import ParticlesBackground from './ParticlesBackground';
 import { useState } from 'react';
 import { ChevronRight, ChevronLeft } from 'lucide-react';
-import { Sparkles, Target, Heart } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 
 const HomeSection = () => {
   const [showAdmissionsCard, setShowAdmissionsCard] = useState(true);
@@ -29,29 +29,7 @@ const HomeSection = () => {
     : "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600'%3E%3Crect fill='%234c1d95' width='1200' height='600'/%3E%3C/svg%3E";
 
 
-  const cards = [
-    {
-      icon: <Target className="w-12 h-12" />,
-      title: 'Vision',
-      description: 'To inspire minds and build future-ready leaders by creating a happy, caring, and stimulating environment.',
-      color: 'from-blue-400 to-cyan-500',
-      bgColor: 'bg-blue-50',
-    },
-    {
-      icon: <Sparkles className="w-12 h-12" />,
-      title: 'Mission',
-      description: 'To provide a comprehensive education that balances academic, emotional, and creative growth, enabling students to achieve their fullest potential.',
-      color: 'from-purple-400 to-pink-500',
-      bgColor: 'bg-purple-50',
-    },
-    {
-      icon: <Heart className="w-12 h-12" />,
-      title: 'Core Values',
-      description: 'The school emphasizes nurturing, growth, and community, often celebrating achievements that reflect empowerment.',
-      color: 'from-orange-400 to-red-500',
-      bgColor: 'bg-orange-50',
-    },
-  ];
+
 
   return (
       <>
@@ -75,7 +53,7 @@ const HomeSection = () => {
             {/* Gradient overlay removed for original video color */}
               {/* Loading overlay and tree animation removed */}
 
-            <div className="relative z-10 text-center px-4 animate-fade-in-up">
+            <div className="relative z-10 text-center px-2 md:px-4 animate-fade-in-up">
               <h1 className="hero-title text-5xl md:text-8xl text-white mb-6 leading-tight">
                 <span
                   className="font-extrabold text-white text-5xl md:text-7xl tracking-normal drop-shadow-[0_4px_16px_rgba(0,0,0,0.25)]"
@@ -109,11 +87,11 @@ const HomeSection = () => {
               {showAdmissionsCard ? (
                 <div className={`pointer-events-auto animate-fade-in-up flex items-center justify-center w-10 md:w-12 h-[180px] md:h-[220px] transition-transform duration-700 ${cardAnim === 'out' ? 'translate-x-full' : cardAnim === 'in' ? 'translate-x-0' : ''}`}>
                   <div
-                    className="absolute origin-center rotate-90 w-[180px] md:w-[220px] h-[44px] md:h-[52px] rounded-t-2xl bg-gradient-to-br from-pink-400 via-purple-400 to-blue-400 border-2 border-b-0 border-white shadow-2xl flex flex-row items-center justify-start gap-2 cursor-pointer hover:brightness-110 transition-all px-2"
+                    className="absolute origin-center rotate-90 w-[180px] md:w-[220px] h-[44px] md:h-[52px] rounded-t-2xl bg-indigo-600 border-2 border-b-0 border-white shadow-2xl flex flex-row items-center justify-start gap-2 cursor-pointer hover:bg-indigo-700 transition-all px-2"
                     onClick={() => window.dispatchEvent(new Event('openAdmission'))}
                   >
                     <button
-                      className="bg-white/90 hover:bg-white text-purple-700 rounded-full p-1.5 shadow-md flex items-center justify-center -rotate-90"
+                      className="bg-[#00094B] hover:bg-[#00094B] text-white rounded-full p-1.5 shadow-md flex items-center justify-center -rotate-90"
                       aria-label="Minimize admissions card"
                       onClick={(e) => {
                         e.stopPropagation();
@@ -136,7 +114,7 @@ const HomeSection = () => {
               ) : (
                 <div className={`pointer-events-auto animate-fade-in-up transition-transform duration-700 ${cardAnim === 'in' ? 'translate-x-full' : 'translate-x-0'}`}>
                   <button
-                    className="rounded-l-2xl bg-gradient-to-br from-pink-400 via-purple-400 to-blue-400 border-2 border-r-0 border-white shadow-2xl p-2 animate-gradient-shift flex items-center justify-center w-10 md:w-12 h-20 md:h-24 hover:brightness-110 transition-all"
+                    className="rounded-l-2xl bg-[#00094B] border-2 border-r-0 border-white shadow-2xl p-2 flex items-center justify-center w-10 md:w-12 h-20 md:h-24 hover:brightness-110 transition-all"
                     aria-label="Show admissions card"
                     onClick={() => {
                       setShowAdmissionsCard(true);
@@ -152,25 +130,32 @@ const HomeSection = () => {
           </div>
         </section>
 
-        {/* Mission, Vision, Core Values Cards moved to a new section below the hero */}
-        <section id="mv-values" className="relative overflow-hidden py-20">
-          <ParticlesBackground />
-          <div className="relative z-10 max-w-7xl mx-auto px-4 grid md:grid-cols-3 gap-8">
-            {cards.map((card, index) => (
-              <div
-                key={index}
-                className={`${card.bgColor} rounded-3xl p-8 shadow-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 animate-fade-in-up`}
-                style={{ animationDelay: `${index * 150}ms` }}
-              >
-                <div className={`bg-gradient-to-br ${card.color} text-white w-20 h-20 rounded-2xl flex items-center justify-center mb-6 shadow-lg`}>
-                  {card.icon}
-                </div>
-                <h3 className="text-2xl font-bold text-gray-800 mb-4">{card.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{card.description}</p>
+        <center></center>
+        <section className="py-14 md:py-16">
+          <div className="max-w-[95rem] mx-auto px-2 sm:px-3 lg:px-4">
+            <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+              <div className="w-full h-full md:h-[420px] md:min-h-[420px] flex md:block justify-center md:justify-start">
+                <img
+                  src="/group.JPG"
+                  alt="Students group"
+                  className="w-full h-full md:h-[420px] md:min-h-[420px] rounded-3xl shadow-xl object-cover object-center md:rounded-3xl md:shadow-xl md:object-cover md:object-center"
+                  style={{ minHeight: '320px', minWidth: '100%', maxWidth: '100%', objectFit: 'cover', objectPosition: 'center' }}
+                />
               </div>
-            ))}
+              <div>
+                <h2 className="text-2xl md:text-3xl font-extrabold mb-4 text-[#1E3F8A] leading-tight">
+                  MVM is a premier co-educational institution located in the heart of Pollachi, offering quality education through the CBSE curriculum with a strong focus on academic excellence, character building, and holistic development.
+                </h2>
+                <p className="mt-4 text-gray-700 text-lg md:text-xl leading-relaxed">
+                  We believe learning extends beyond textbooks. Our approach emphasizes the development of nine intelligence skills, along with strong human values and social awareness from an early stage. Through a balanced blend of structured academics, discipline, creativity and real-world exposure, we nurture students into confident, responsible and future-ready individuals.
+                </p>
+              </div>
+            </div>
           </div>
         </section>
+        
+
+        {/* Mission and Vision cards removed as requested */}
       </>
   );
 };

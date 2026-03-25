@@ -155,9 +155,9 @@ const CareersSection = () => {
 
   return (
     <section id="careers" className="py-20 bg-gradient-to-b from-indigo-50 to-white">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[95rem] mx-auto px-2 sm:px-3 lg:px-4">
         <div className="text-center mb-16 animate-fade-in-up">
-          <h2 className="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-purple-400 to-blue-400 animate-gradient-shift drop-shadow-[0_2px_8px_rgba(0,0,0,0.18)] mb-4 tracking-tight">
+          <h2 className="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight" style={{ color: '#1E3F8A' }}>
             Careers at Minervaa
             <span className="inline-block align-middle ml-2">
               {/* Sparkles icon for shining effect, use lucide-react Sparkles if available */}
@@ -166,7 +166,9 @@ const CareersSection = () => {
           </h2>
           <div className="w-24 h-1.5 bg-indigo-500 mx-auto rounded-full mb-6"></div>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Join our team of passionate educators and staff to help inspire minds and build futures.
+            Build your career in a supportive and inspiring school environment.
+Be part of a journey that shapes both educators and learners.
+
           </p>
         </div>
 

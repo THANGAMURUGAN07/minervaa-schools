@@ -57,11 +57,11 @@ const AcademicsSection = () => {
   };
 
   return (
-    <section id="academics" className="relative overflow-hidden py-20 bg-gradient-to-b from-blue-50 to-purple-50">
+    <section id="academics" className="relative overflow-hidden py-20">
       <ParticlesBackground />
-      <div className="relative z-10 max-w-7xl mx-auto px-4">
+      <div className="relative z-10 max-w-[95rem] mx-auto px-2 sm:px-3 lg:px-4">
         <div className="text-center mb-16">
-          <h2 className="text-5xl font-bold section-title-shine mb-6">Our Educational Programs</h2>
+          <h2 className="text-5xl font-bold mb-6" style={{ color: '#1E3F8A' }}>Our Educational Programs</h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             We provide comprehensive education for play school, pre school and primary school students with age-appropriate learning programs.
           </p>
@@ -103,7 +103,7 @@ const AcademicsSection = () => {
         </div>
 
         <div className="relative">
-          <h3 className="text-3xl font-bold text-center text-gray-800 mb-8">Our Programs</h3>
+          <h3 className="text-3xl font-bold text-center mb-8" style={{ color: '#1E3F8A' }}>Our Programs</h3>
 
           <div className="relative overflow-hidden rounded-3xl">
             <div

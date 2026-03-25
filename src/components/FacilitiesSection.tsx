@@ -1,256 +1,430 @@
 import ParticlesBackground from './ParticlesBackground';
-import { useState, useEffect } from 'react';
-import { Monitor, TestTube, Dumbbell, Bus, BookOpen, Music, X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { Monitor, TestTube, Dumbbell, Bus, BookOpen, Shield, X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useScrollFadeIn } from './useScrollFadeIn';
+
+interface LabSection {
+	title: string;
+	image: string;
+	description: string;
+}
 
 interface Facility {
-  icon: JSX.Element;
-  title: string;
-  color: string;
-  image: string;
-  overview: string;
-  technology: string;
-  experience: string;
-  access: string;
-  viewAllImage?: string;
+	category: string;
+	icon: JSX.Element;
+	title: string;
+	color: string;
+	image: string;
+	overview: string;
+	technology: string;
+	experience: string;
+	access: string;
+	viewAllImage?: string;
+	labSections?: LabSection[];
 }
 
 const facilities: Facility[] = [
-  {
-    icon: <Monitor className="w-12 h-12" />,
-    title: 'Smart Classrooms',
-    color: 'from-blue-500 to-cyan-500',
-    image: '/smart%20classroom2.JPG',
-    overview: 'Our smart classrooms are equipped with the latest interactive technology to create an engaging and immersive learning experience. Digital boards, projectors, and multimedia resources make every lesson come alive.',
-    technology: 'Interactive whiteboards, HD projectors, high-speed internet connectivity, and tablet integration for collaborative learning.',
-    experience: 'Students enjoy dynamic, visual learning experiences that cater to different learning styles. Teachers can access vast educational resources and create interactive lessons that keep students engaged.',
-    access: 'All classrooms from Grade 1 onwards are equipped with smart technology. Regular maintenance ensures optimal performance throughout the academic year.',
-  },
-  {
-    icon: <TestTube className="w-12 h-12" />,
-    title: 'Science & Computer Lab',
-    color: 'from-green-500 to-emerald-500',
-    image: '/lab.JPG', // For carousel
-    overview: 'State-of-the-art laboratories provide hands-on learning opportunities in science and technology. Our labs are designed to spark curiosity and encourage experimentation.',
-    technology: 'Modern computers with educational software, high-speed internet, science equipment for physics, chemistry, and biology experiments, safety equipment, and digital microscopes.',
-    experience: 'Students conduct real experiments, learn programming, and develop critical thinking skills through practical application of theoretical concepts.',
-    access: 'Available to all students during scheduled lab periods and after school hours for project work under teacher supervision.',
-    viewAllImage: '/lab2.jpg', // For View All overlay
-  },
-  {
-    icon: <Dumbbell className="w-12 h-12" />,
-    title: 'Sports Ground',
-    color: 'from-orange-500 to-red-500',
-    image: '/sports%20ground2.JPG',
-    overview: 'Our expansive sports facilities promote physical fitness and team spirit. Multiple courts and fields support a variety of sports and outdoor activities.',
-    technology: 'Professional-grade sports equipment, marked playing fields for cricket, football, basketball courts, and athletic tracks.',
-    experience: 'Regular physical education classes, inter-house competitions, and coaching in various sports help students develop athletic skills, teamwork, and sportsmanship.',
-    access: 'Open daily during school hours with dedicated PE periods. After-school sports programs and weekend practice sessions available for various teams.',
-  },
-  {
-    icon: <Bus className="w-12 h-12" />,
-    title: 'Transportation',
-    color: 'from-purple-500 to-pink-500',
-    image: '/transportation2.JPG',
-    overview: 'Safe and reliable transportation services ensure students commute comfortably. Our fleet of buses covers extensive routes across the city.',
-    technology: 'GPS-tracked buses, CCTV cameras, speed governors, first-aid kits, and real-time parent notification system.',
-    experience: 'Trained drivers and attendants ensure student safety. Parents can track bus location in real-time through our mobile app.',
-    access: 'Multiple routes covering major areas of the city. Door-to-door pickup and drop services available. Emergency contact system in place.',
-  },
-  {
-    icon: <BookOpen className="w-12 h-12" />,
-    title: 'Library',
-    color: 'from-yellow-500 to-orange-500',
-    image: '/library2.JPG',
-    overview: 'Our well-stocked library is a treasure trove of knowledge with thousands of books, magazines, and digital resources fostering a love for reading.',
-    technology: 'Extensive collection of books across genres, e-library access, reading nooks, computer terminals for research, and digital catalog system.',
-    experience: 'Quiet study areas, storytelling sessions for younger students, book clubs, and reading challenges encourage students to explore literature.',
-    access: 'Open throughout school hours. Students can borrow books for home reading. Library periods scheduled for each class weekly.',
-  },
-  {
-    icon: <Music className="w-12 h-12" />,
-    title: 'Music & Arts',
-    color: 'from-pink-500 to-rose-500',
-    image: '/music%20and%20arts2.JPG',
-    overview: 'Dedicated spaces for creative expression through music, dance, and visual arts. Our arts program nurtures creativity and artistic talents.',
-    technology: 'Musical instruments including keyboards, drums, guitars, art supplies, dance studio with mirrors, and audio system.',
-    experience: 'Regular classes in music, dance, and visual arts. Annual cultural programs showcase student talents. Individual and group performances build confidence.',
-    access: 'Scheduled classes for all grades. Optional additional training available. Practice rooms can be booked for individual practice.',
-  },
+	{
+		category: 'Facilities',
+		icon: <Monitor className="w-12 h-12" />,
+		title: 'Smart Classrooms',
+		color: 'from-blue-500 to-cyan-500',
+		image: '/smartclassroom.JPG',
+		overview: '',
+		technology: 'Air-conditioned classrooms equipped with modern technology to support interactive and engaging learning experiences.',
+		experience: '',
+		access: '',
+		viewAllImage: '/smartclassroom2.JPG',
+	},
+	{
+		category: 'Facilities',
+		icon: <BookOpen className="w-12 h-12" />,
+		title: 'Library',
+		color: 'from-yellow-500 to-orange-500',
+		image: '/library3.JPG',
+		overview: '',
+		technology: 'A well-resourced library with a rich collection of books, journals, and digital materials to encourage reading and research habits.',
+		experience: '',
+		access: '',
+		viewAllImage: '/library2.JPG',
+	},
+	{
+		category: 'Facilities',
+		icon: <TestTube className="w-12 h-12" />,
+		title: 'Laboratories',
+		color: 'from-green-500 to-emerald-500',
+		image: '/lab2.JPG',
+		overview: '',
+		technology: 'Fully equipped science and computer laboratories that promote practical learning and innovation.',
+		experience: '',
+		access: '',
+		labSections: [
+			{
+				title: 'Chemistry Lab',
+				image: '/chemistry.JPG',
+				description:
+					'A well-equipped chemistry laboratory with safe workstations, essential apparatus, and supervised experiments that help students understand chemical reactions through practical learning.',
+			},
+			{
+				title: 'Biology Lab',
+				image: '/biology.JPG',
+				description:
+					'A dedicated biology laboratory with models, charts, microscopes, and specimen-based activities that build scientific observation skills and concept clarity in life sciences.',
+			},
+			{
+				title: 'Computer Lab',
+				image: '/lab3.JPG',
+				description:
+					'A modern computer laboratory with guided digital learning, foundational coding exposure, and technology-enabled practice sessions to strengthen students\' computer literacy.',
+			},
+		],
+	},
+	{
+		category: 'Health & Safety',
+		icon: <Shield className="w-12 h-12" />,
+		title: 'Safety & Security',
+		color: 'from-blue-500 to-indigo-600',
+		image: '/safety.JPG',
+		overview: '',
+		technology: '24/7 CCTV surveillance, GPS-enabled school transport, and trained security personnel to provide a safe campus environment.',
+		experience: '',
+		access: '',
+		viewAllImage: '/safety2.JPG',
+	},
+	{
+		category: 'Infrastructure',
+		icon: <Dumbbell className="w-12 h-12" />,
+		title: 'Playgrounds',
+		color: 'from-orange-500 to-red-500',
+		image: '/sports.JPG',
+		overview: '',
+		technology: 'Wide and well-maintained play areas that support sports, fitness, and outdoor learning.',
+		experience: '',
+		access: '',
+		viewAllImage: '/sports2.JPG',
+	},
+	{
+		category: 'Additional Facilities',
+		icon: <Bus className="w-12 h-12" />,
+		title: 'Transportation',
+		color: 'from-purple-500 to-pink-500',
+		image: '/transportation.JPG',
+		overview: '',
+		technology: 'A reliable fleet of school buses with experienced drivers, ensuring safe and comfortable travel for students.',
+		experience: '',
+		access: '',
+		viewAllImage: '/transportation2.JPG',
+	},
 ];
 
-const FacilitiesSection = () => {
-  const [isViewAllOpen, setIsViewAllOpen] = useState(false);
-  const [currentSlide, setCurrentSlide] = useState(0);
+// Helper to get the correct image for a facility, with fallback for Smart Classrooms
+const getFacilityImage = (facility: Facility) => {
+  if (facility.title === 'Smart Classrooms') {
+    return facility.image || '/smartclassroom.JPG';
+  }
+  return facility.image;
+};
+// Update getFacilityViewAllImage helper:
+const getFacilityViewAllImage = (facility: Facility) => {
+  if (facility.title === 'Smart Classrooms') {
+    return '/smartclassroom2.JPG';
+  }
+  if (facility.title === 'Library') {
+    return facility.viewAllImage || facility.image;
+  }
+  if (facility.title === 'Transportation') {
+    return facility.viewAllImage || facility.image;
+  }
+  if (facility.title === 'Playgrounds') {
+    return facility.viewAllImage || facility.image;
+  }
+  if (facility.title === 'Safety & Security') {
+    return facility.viewAllImage || facility.image;
+  }
+  return facility.viewAllImage || facility.image;
+};
 
-  useEffect(() => {
-    if (isViewAllOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [isViewAllOpen]);
+const getFacilityTheme = (title: string) => {
+	switch (title) {
+		case 'Smart Classrooms':
+			return {
+				panel: 'bg-blue-50 border-blue-200',
+				icon: 'bg-blue-600',
+			};
+		case 'Library':
+			return {
+				panel: 'bg-amber-50 border-amber-200',
+				icon: 'bg-amber-600',
+			};
+		case 'Laboratories':
+			return {
+				panel: 'bg-emerald-50 border-emerald-200',
+				icon: 'bg-emerald-600',
+			};
+		case 'Safety & Security':
+			return {
+				panel: 'bg-indigo-50 border-indigo-200',
+				icon: 'bg-indigo-600',
+			};
+		case 'Playgrounds':
+			return {
+				panel: 'bg-orange-50 border-orange-200',
+				icon: 'bg-orange-600',
+			};
+		case 'Transportation':
+			return {
+				panel: 'bg-fuchsia-50 border-fuchsia-200',
+				icon: 'bg-fuchsia-600',
+			};
+		default:
+			return {
+				panel: 'bg-slate-50 border-slate-200',
+				icon: 'bg-slate-600',
+			};
+	}
+};
 
-  const goToSlide = (idx: number) => setCurrentSlide(idx);
-  const nextSlide = () => setCurrentSlide((currentSlide + 1) % facilities.length);
-  const prevSlide = () => setCurrentSlide((currentSlide - 1 + facilities.length) % facilities.length);
-
-  const leftIdx = currentSlide === 0 ? facilities.length - 1 : currentSlide - 1;
-  const rightIdx = currentSlide === facilities.length - 1 ? 0 : currentSlide + 1;
-  const visibleCards = [leftIdx, currentSlide, rightIdx];
-
+// Helper component for animated facility card in View More modal
+const AnimatedFacilityCard = ({ facility, index }: { facility: Facility; index: number }) => {
+  const imageFade = useScrollFadeIn<HTMLDivElement>('up', 0.7, 0.05 * index);
+  const textFade = useScrollFadeIn<HTMLDivElement>('down', 0.7, 0.1 + 0.05 * index);
+	const theme = getFacilityTheme(facility.title);
   return (
-    <section id="facilities" className="relative overflow-hidden py-20 bg-gradient-to-b from-purple-50 to-pink-50">
-      <ParticlesBackground />
-      <div className="relative z-10 max-w-7xl mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-5xl font-bold section-title-shine mb-6">World Class Facilities</h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Creating the perfect environment for learning, growth and fun.
-          </p>
-        </div>
+    <div className="space-y-6">
+      {(index === 0 || facilities[index - 1].category !== facility.category) && (
+        <h4 className="text-2xl sm:text-3xl font-bold text-[#1E3F8A] border-l-4 border-[#1E3F8A] pl-4">
+          {facility.category}
+        </h4>
+      )}
+      <div className="flex flex-col lg:flex-row items-center lg:items-stretch gap-8 rounded-2xl shadow-lg bg-white p-8">
+        {index % 2 === 0 ? (
+          <>
+            {facility.title !== 'Laboratories' && (
+              <div className="flex-1 flex items-center justify-center order-1" {...imageFade}>
+								<img
+									src={getFacilityViewAllImage(facility)}
+									alt={facility.title}
+									className="rounded-2xl w-full object-cover shadow-lg"
+								/>
+              </div>
+            )}
+						<div className={`flex-1 flex flex-col justify-center order-2 rounded-2xl border p-6 ${theme.panel}`} {...textFade}>
+							<div className={`${theme.icon} text-white w-20 h-20 rounded-2xl flex items-center justify-center mb-6`}>
+                {facility.icon}
+              </div>
+              <h4 className="text-3xl font-bold mb-4 text-gray-800">{facility.title}</h4>
+              {renderFacilityDetails(facility)}
+            </div>
+          </>
+        ) : (
+          <>
+						<div className={`flex-1 flex flex-col justify-center order-2 lg:order-1 rounded-2xl border p-6 ${theme.panel}`} {...textFade}>
+							<div className={`${theme.icon} text-white w-20 h-20 rounded-2xl flex items-center justify-center mb-6`}>
+                {facility.icon}
+              </div>
+              <h4 className="text-3xl font-bold mb-4 text-gray-800">{facility.title}</h4>
+              {renderFacilityDetails(facility)}
+            </div>
+            {facility.title !== 'Laboratories' && (
+              <div className="flex-1 flex items-center justify-center order-1 lg:order-2" {...imageFade}>
+								<img
+									src={getFacilityViewAllImage(facility)}
+									alt={facility.title}
+									className="rounded-2xl w-full object-cover shadow-lg"
+								/>
+              </div>
+            )}
+          </>
+        )}
+      </div>
+    </div>
+  );
+};
 
-        <div className="relative max-w-full mx-auto py-12">
-          <div className="relative flex items-center justify-center bg-pink-50 rounded-3xl shadow-xl py-12 overflow-hidden">
-            {/* Left arrow */}
-            <button
-              onClick={prevSlide}
-              className="absolute left-0 z-20 bg-white border border-blue-600 text-blue-600 rounded-full p-3 shadow-lg hover:bg-blue-50 transition-colors"
-              aria-label="Previous Facility"
-              style={{ top: '50%', transform: 'translateY(-50%)' }}
+const renderFacilityDetails = (facility: Facility) => (
+  <div className="space-y-3">
+    <div>
+      <span className="font-semibold text-gray-700">Details:</span>{' '}
+      <span className="text-gray-600">{facility.technology}</span>
+    </div>
+    {facility.title === 'Laboratories' && facility.labSections && facility.labSections.length > 0 && (
+      <div>
+        <p className="font-semibold text-gray-700 mb-4 text-lg">Laboratory Sections:</p>
+        <div className="space-y-6">
+          {facility.labSections.map((lab, index) => (
+            <div
+              key={lab.title}
+              className={`rounded-2xl bg-white border border-gray-200 shadow-md p-4 sm:p-6 flex flex-col md:items-stretch gap-5 ${
+                index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
+              }`}
             >
-              <ChevronLeft className="w-6 h-6" />
-            </button>
-            {/* Slider */}
-            <div className="w-full px-8">
-              <div className="flex items-center w-full gap-4">
-                {visibleCards.map((facilityIndex, position) => {
-                  const facility = facilities[facilityIndex];
-                  const isCenter = position === 1;
-                  return (
-                    <div
-                      key={`${facility.title}-${position}`}
-                      className={`relative h-[500px] rounded-2xl bg-cover bg-center shadow-xl ${
-                        isCenter ? 'w-2/5 scale-100 opacity-100' : 'w-1/4 scale-95 opacity-85'
-                      }`}
-                      style={{
-                        backgroundImage: `url(${facility.image})`,
-                        transition: 'transform 1.15s cubic-bezier(0.22,1,0.36,1), opacity 1.15s cubic-bezier(0.22,1,0.36,1), width 1.15s cubic-bezier(0.22,1,0.36,1)',
-                      }}
-                    >
-                      {!isCenter && <div className="absolute inset-0 rounded-2xl bg-black/65 transition-all duration-[1150ms] ease-out" />}
-                      <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-black/60 via-black/20 to-transparent transition-all duration-[1150ms] ease-out" />
-                      <div className="relative z-10 h-full flex flex-col items-center justify-end pb-8 px-4 text-center">
-                        <div className={`bg-gradient-to-br ${facility.color} text-white w-16 h-16 rounded-full flex items-center justify-center mb-4 transition-all duration-[1150ms] ease-out`}>
-                          {facility.icon}
-                        </div>
-                        <h3 className="text-2xl font-bold text-white mb-2 drop-shadow-lg transition-all duration-[1150ms] ease-out">{facility.title}</h3>
-                        <p className="text-white/90 text-lg transition-all duration-[1150ms] ease-out">Explore our cutting-edge labs.</p>
-                      </div>
-                    </div>
-                  );
-                })}
+              <img
+                src={lab.image}
+                alt={lab.title}
+                className="w-full md:w-[48%] h-56 sm:h-64 md:h-72 rounded-xl object-cover"
+              />
+              <div className="flex-1 text-left flex flex-col justify-center">
+                <p className="text-gray-900 font-bold text-2xl mb-3">{lab.title}</p>
+                <p className="text-gray-700 text-base sm:text-lg leading-relaxed">{lab.description}</p>
               </div>
             </div>
-            {/* Right arrow */}
-            <button
-              onClick={nextSlide}
-              className="absolute right-0 z-20 bg-white border border-pink-500 text-pink-500 rounded-full p-3 shadow-lg hover:bg-pink-50 transition-colors"
-              aria-label="Next Facility"
-              style={{ top: '50%', transform: 'translateY(-50%)' }}
-            >
-              <ChevronRight className="w-6 h-6" />
-            </button>
-          </div>
-          {/* Dots navigation */}
-          <div className="flex justify-center gap-2 mt-6">
-            {facilities.map((_, idx) => (
-              <button
-                key={idx}
-                onClick={() => goToSlide(idx)}
-                className={`w-3 h-3 rounded-full ${currentSlide === idx ? 'bg-blue-600' : 'bg-gray-300'}`}
-                aria-label={`Go to slide ${idx + 1}`}
-              />
-            ))}
-          </div>
-        </div>
-
-        <div className="mt-12 text-center">
-          <button
-            onClick={() => setIsViewAllOpen(true)}
-            className="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full font-bold hover:shadow-lg transform hover:scale-105 transition-all duration-300"
-          >
-            View All
-          </button>
+          ))}
         </div>
       </div>
+    )}
+	</div>
+);
 
-      {isViewAllOpen && (
-        <div
-          className="fixed inset-0 z-50 bg-white overflow-y-auto overscroll-contain"
-        >
-          <div className="max-w-7xl mx-auto px-4 py-8 sm:py-10">
-            <div className="flex justify-between items-center mb-8 sticky top-0 bg-white/95 backdrop-blur-sm py-4 z-10">
-              <h3 className="text-3xl sm:text-4xl font-bold text-gray-800">All Facilities</h3>
-              <button
-                onClick={() => setIsViewAllOpen(false)}
-                className="inline-flex items-center gap-2 px-5 py-2.5 bg-gray-100 text-gray-700 rounded-full font-semibold hover:bg-gray-200 transition-colors"
-              >
-                <X className="w-5 h-5" />
-                Exit
-              </button>
-            </div>
+const FacilitiesSection = () => {
+	const [currentSlide, setCurrentSlide] = useState(0);
+	const [isViewAllOpen, setIsViewAllOpen] = useState(false);
 
-            <div className="space-y-16 pb-8">
-              {facilities.map((facility, index) => (
-                <div
-                  key={`view-all-${index}`}
-                  className="flex flex-col lg:flex-row items-center lg:items-stretch gap-8 rounded-2xl shadow-lg bg-white p-8"
-                >
-                  {/* Alternate image/content sides */}
-                  {index % 2 === 0 ? (
-                    <>
-                      <div className="flex-1 flex items-center justify-center">
-                        <img src={facility.viewAllImage || facility.image} alt={facility.title} className="rounded-2xl w-full max-w-xs h-72 object-cover shadow-lg" />
-                      </div>
-                      <div className="flex-1 flex flex-col justify-center">
-                        <div className={`bg-gradient-to-br ${facility.color} text-white w-20 h-20 rounded-2xl flex items-center justify-center mb-6`}>{facility.icon}</div>
-                        <h4 className="text-3xl font-bold mb-4 text-gray-800">{facility.title}</h4>
-                        <div className="space-y-3">
-                          <div><span className="font-semibold text-gray-700">Overview:</span> <span className="text-gray-600">{facility.overview}</span></div>
-                          <div><span className="font-semibold text-gray-700">Technology & Equipment:</span> <span className="text-gray-600">{facility.technology}</span></div>
-                          <div><span className="font-semibold text-gray-700">Learning Experience:</span> <span className="text-gray-600">{facility.experience}</span></div>
-                          <div><span className="font-semibold text-gray-700">Access & Usage:</span> <span className="text-gray-600">{facility.access}</span></div>
-                        </div>
-                      </div>
-                    </>
-                  ) : (
-                    <>
-                      <div className="flex-1 flex flex-col justify-center">
-                        <div className={`bg-gradient-to-br ${facility.color} text-white w-20 h-20 rounded-2xl flex items-center justify-center mb-6`}>{facility.icon}</div>
-                        <h4 className="text-3xl font-bold mb-4 text-gray-800">{facility.title}</h4>
-                        <div className="space-y-3">
-                          <div><span className="font-semibold text-gray-700">Overview:</span> <span className="text-gray-600">{facility.overview}</span></div>
-                          <div><span className="font-semibold text-gray-700">Technology & Equipment:</span> <span className="text-gray-600">{facility.technology}</span></div>
-                          <div><span className="font-semibold text-gray-700">Learning Experience:</span> <span className="text-gray-600">{facility.experience}</span></div>
-                          <div><span className="font-semibold text-gray-700">Access & Usage:</span> <span className="text-gray-600">{facility.access}</span></div>
-                        </div>
-                      </div>
-                      <div className="flex-1 flex items-center justify-center">
-                        <img src={facility.viewAllImage || facility.image} alt={facility.title} className="rounded-2xl w-full max-w-xs h-72 object-cover shadow-lg" />
-                      </div>
-                    </>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
-    </section>
-  );
+	useEffect(() => {
+		if (isViewAllOpen) {
+			document.body.style.overflow = 'hidden';
+		} else {
+			document.body.style.overflow = '';
+		}
+
+		return () => {
+			document.body.style.overflow = '';
+		};
+	}, [isViewAllOpen]);
+
+	const goToSlide = (idx: number) => setCurrentSlide(idx);
+	const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % facilities.length);
+	const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + facilities.length) % facilities.length);
+
+	const idx = (value: number) => (value + facilities.length) % facilities.length;
+	const visibleCards = [
+		idx(currentSlide - 2),
+		idx(currentSlide - 1),
+		currentSlide,
+		idx(currentSlide + 1),
+		idx(currentSlide + 2),
+	];
+
+	return (
+		<section id="facilities" className="relative overflow-hidden py-20">
+			<ParticlesBackground />
+			<div className="relative z-10 max-w-[95rem] mx-auto px-2 sm:px-3 lg:px-4">
+				<div className="mb-10 sm:mb-12">
+					<h2 className="text-5xl font-medium" style={{ color: '#3f3f46' }}>
+						Facilities
+					</h2>
+				</div>
+
+				<div className="relative max-w-full mx-auto py-4 sm:py-6">
+					<div className="relative flex items-center justify-center py-4 sm:py-6 overflow-hidden">
+						<button
+							onClick={prevSlide}
+							className="absolute left-0 sm:left-2 md:left-4 lg:left-5 z-20 bg-white border border-blue-600 text-blue-600 rounded-full p-2 sm:p-3 shadow-md hover:bg-blue-50 transition-colors"
+							aria-label="Previous Facility"
+							style={{ top: '50%', transform: 'translateY(-50%)' }}
+						>
+							<ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+						</button>
+
+						<div className="w-full px-1 sm:px-10 md:px-14 lg:px-16">
+							<div className="flex items-center justify-center w-full gap-1 sm:gap-3">
+								{visibleCards.map((facilityIndex, position) => {
+									const facility = facilities[facilityIndex];
+									const isCenter = position === 2;
+									const isNearSide = position === 1 || position === 3;
+
+									return (
+										<div
+											key={`${facility.title}-${position}`}
+											className={`relative rounded-lg bg-cover bg-center shadow-xl h-[300px] sm:h-[460px] md:h-[520px] transition-all duration-500 ${
+												isCenter
+													? 'w-[48vw] max-w-[240px] sm:w-[58vw] md:w-[60vw] lg:w-[62vw] sm:max-w-[780px] opacity-100'
+													: isNearSide
+														? 'w-[12vw] min-w-[44px] sm:w-[100px] md:w-[118px] lg:w-[125px] opacity-95'
+														: 'w-[9vw] min-w-[34px] lg:w-[88px] xl:w-[98px] opacity-85'
+											}`}
+											style={{ backgroundImage: `url(${getFacilityImage(facility)})` }}
+										>
+											<div className="absolute inset-0 bg-black/30 rounded-lg" />
+
+											<div className="absolute z-10 left-0 right-0 bottom-0 flex flex-col items-center px-2 pb-4 sm:pb-8 text-center">
+												<div className="w-full flex flex-col items-center">
+													<div
+														className={`bg-gradient-to-br ${facility.color} text-white rounded-2xl flex items-center justify-center shadow-lg transition-all duration-500 ${
+															isCenter
+																? 'w-14 h-14 sm:w-20 sm:h-20 md:w-24 md:h-24 scale-100 opacity-100'
+																: 'w-10 h-10 sm:w-14 sm:h-14 scale-90 opacity-100'
+														}`}
+													>
+														{facility.icon}
+													</div>
+													{isCenter && (
+														<h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mt-3 drop-shadow-lg leading-tight">
+															{facility.title}
+														</h3>
+													)}
+												</div>
+											</div>
+										</div>
+									);
+								})}
+							</div>
+						</div>
+
+						<button
+							onClick={nextSlide}
+							className="absolute right-0 sm:right-2 md:right-4 lg:right-5 z-20 bg-white border border-blue-600 text-blue-600 rounded-full p-2 sm:p-3 shadow-md hover:bg-blue-50 transition-colors"
+							aria-label="Next Facility"
+							style={{ top: '50%', transform: 'translateY(-50%)' }}
+						>
+							<ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
+						</button>
+					</div>
+
+					<div className="hidden justify-center gap-2 mt-6">
+						{facilities.map((_, index) => (
+							<button
+								key={index}
+								onClick={() => goToSlide(index)}
+								className={`w-3 h-3 rounded-full ${currentSlide === index ? 'bg-blue-600' : 'bg-gray-300'}`}
+								aria-label={`Go to slide ${index + 1}`}
+							/>
+						))}
+					</div>
+				</div>
+
+				<div className="mt-12 text-center">
+					<button
+						onClick={() => setIsViewAllOpen(true)}
+						className="px-10 py-3 bg-[#2f3f9f] text-white rounded-md font-bold hover:bg-[#2a3687] transition-colors duration-300"
+					>
+						View More
+					</button>
+				</div>
+			</div>
+
+			{isViewAllOpen && (
+				<div className="fixed inset-0 z-50 bg-white overflow-y-auto overscroll-contain">
+					<div className="max-w-[95rem] mx-auto px-2 sm:px-3 lg:px-4 py-8 sm:py-10">
+						<div className="flex justify-between items-center mb-8 sticky top-0 bg-white/95 backdrop-blur-sm py-4 z-10">
+							<h3 className="text-3xl sm:text-4xl font-bold text-gray-800">All Facilities</h3>
+							<button
+								onClick={() => setIsViewAllOpen(false)}
+								className="inline-flex items-center gap-2 px-5 py-2.5 bg-gray-100 text-gray-700 rounded-full font-semibold hover:bg-gray-200 transition-colors"
+							>
+								<X className="w-5 h-5" />
+								Exit
+							</button>
+						</div>
+						<div className="space-y-16 pb-8">
+							{facilities.map((facility, index) => (
+								<AnimatedFacilityCard key={`view-all-${index}`} facility={facility} index={index} />
+							))}
+						</div>
+					</div>
+				</div>
+			)}
+		</section>
+	);
 };
 
 export default FacilitiesSection;
