@@ -2,7 +2,7 @@ import ParticlesBackground from './ParticlesBackground';
 import { useEffect, useState } from 'react';
 import { Monitor, TestTube, Dumbbell, Bus, BookOpen, Shield, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useScrollFadeIn } from './useScrollFadeIn';
-import { getPublicAssetFallbackUrls, getPublicAssetUrl } from '../utils/publicAsset';
+import { getPublicAssetUrl } from '../utils/publicAsset';
 
 interface LabSection {
 	title: string;
@@ -118,36 +118,8 @@ const facilities: Facility[] = [
 	},
 ];
 
-// Update getFacilityViewAllImage helper:
-const getFacilityViewAllImage = (facility: Facility) => {
-  if (facility.title === 'Smart Classrooms') {
-		return getPublicAssetUrl('/smartclassroom2.JPG');
-  }
-  if (facility.title === 'Library') {
-		return getPublicAssetUrl(facility.viewAllImage || facility.image);
-  }
-  if (facility.title === 'Transportation') {
-		return getPublicAssetUrl(facility.viewAllImage || facility.image);
-  }
-  if (facility.title === 'Playgrounds') {
-		return getPublicAssetUrl(facility.viewAllImage || facility.image);
-  }
-  if (facility.title === 'Safety & Security') {
-		return getPublicAssetUrl(facility.viewAllImage || facility.image);
-  }
-	return getPublicAssetUrl(facility.viewAllImage || facility.image);
-};
-
-const getFacilityImageFallbackUrls = (facility: Facility) => {
-	const primaryPath = facility.title === 'Smart Classrooms' ? (facility.image || '/smartclassroom.JPG') : facility.image;
-	const secondaryPath = facility.viewAllImage || facility.image;
-	const urls = [
-		...getPublicAssetFallbackUrls(primaryPath),
-		...getPublicAssetFallbackUrls(secondaryPath),
-	];
-
-	return Array.from(new Set(urls));
-};
+const resolveImageUrl = (value: string) =>
+	/^https?:\/\//i.test(value) ? value : getPublicAssetUrl(value);
 
 const getFacilityTheme = (title: string) => {
 	switch (title) {
@@ -207,7 +179,7 @@ const AnimatedFacilityCard = ({ facility, index }: { facility: Facility; index: 
             {facility.title !== 'Laboratories' && (
               <div className="flex-1 flex items-center justify-center order-1" {...imageFade}>
 								<img
-									src={getFacilityViewAllImage(facility)}
+														src={resolveImageUrl(facility.viewAllImage || facility.image)}
 									alt={facility.title}
 									className="rounded-2xl w-full object-cover shadow-lg"
 								/>
@@ -233,7 +205,7 @@ const AnimatedFacilityCard = ({ facility, index }: { facility: Facility; index: 
             {facility.title !== 'Laboratories' && (
               <div className="flex-1 flex items-center justify-center order-1 lg:order-2" {...imageFade}>
 								<img
-									src={getFacilityViewAllImage(facility)}
+														src={resolveImageUrl(facility.viewAllImage || facility.image)}
 									alt={facility.title}
 									className="rounded-2xl w-full object-cover shadow-lg"
 								/>
@@ -264,7 +236,7 @@ const renderFacilityDetails = (facility: Facility) => (
               }`}
             >
               <img
-								src={getPublicAssetUrl(lab.image)}
+								src={resolveImageUrl(lab.image)}
                 alt={lab.title}
                 className="w-full md:w-[48%] h-56 sm:h-64 md:h-72 rounded-xl object-cover"
               />
@@ -349,16 +321,7 @@ const FacilitiesSection = () => {
 											}`}
 										>
 											<img
-												src={getFacilityImageFallbackUrls(facility)[0]}
-												onError={(e) => {
-													const target = e.currentTarget;
-													const fallbackUrls = getFacilityImageFallbackUrls(facility);
-													const nextIndex = Number(target.dataset.fallbackIndex || '0') + 1;
-													if (nextIndex < fallbackUrls.length) {
-														target.dataset.fallbackIndex = String(nextIndex);
-														target.src = fallbackUrls[nextIndex];
-													}
-												}}
+														src={resolveImageUrl(facility.image)}
 												alt={facility.title}
 												className="absolute inset-0 w-full h-full object-cover rounded-lg"
 											/>

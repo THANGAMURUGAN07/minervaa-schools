@@ -3,6 +3,9 @@ import { useState } from 'react';
 import { Image, Video, Play } from 'lucide-react';
 import { getPublicAssetUrl } from '../utils/publicAsset';
 
+const resolveImageUrl = (value: string) =>
+  /^https?:\/\//i.test(value) ? value : getPublicAssetUrl(value);
+
 const GallerySection = () => {
   const [activeTab, setActiveTab] = useState<'images' | 'videos'>('images');
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
@@ -128,7 +131,7 @@ const GallerySection = () => {
               >
                 <div className="relative h-48 overflow-hidden">
                   <img
-                    src={getPublicAssetUrl(event.thumbnail)}
+                    src={resolveImageUrl(event.thumbnail)}
                     alt={event.title}
                     className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
                   />
