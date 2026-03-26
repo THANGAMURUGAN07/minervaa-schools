@@ -1,6 +1,6 @@
 import ParticlesBackground from './ParticlesBackground';
 import { useEffect, useState, useRef } from 'react';
-import { Award, Users, GraduationCap, Shield, Lightbulb, Heart, BookOpen, Trophy, Eye, Flag } from 'lucide-react';
+import { Award, Users, GraduationCap, Heart, BookOpen, Trophy, Eye, Flag } from 'lucide-react';
 import { getPublicAssetFallbackUrls } from '../utils/publicAsset';
 
 const AboutSection = () => {
@@ -76,39 +76,80 @@ const AboutSection = () => {
   const features = [
     {
       icon: <BookOpen className="w-10 h-10" />,
-      title: 'Comprehensive Curriculum',
-      description: 'CBSE curriculum enhanced with modern teaching methodologies, digital learning and skill development programs.',
-      color: 'from-blue-400 to-blue-600',
+      title: 'Signature Teaching Approach',
+      subtitle: 'Our classrooms are dynamic, interactive, and future-ready.',
+      points: [
+        'Smart digital classrooms',
+        'Activity & project-based learning',
+        'Inquiry-based teaching methods',
+        'Continuous assessment & feedback',
+        'Collaborative and discussion-driven sessions',
+      ],
+      color: 'from-blue-500 to-cyan-500',
+      soft: 'from-blue-50 to-cyan-50',
+      bullet: 'text-blue-600',
+      emoji: '💡',
     },
     {
       icon: <GraduationCap className="w-10 h-10" />,
-      title: 'Experienced Faculty',
-      description: 'Highly qualified and passionate teachers committed to bringing out the best in every student.',
-      color: 'from-green-400 to-green-600',
+      title: 'Beyond Academics',
+      subtitle: 'True education goes beyond books.',
+      points: [
+        'Fluent English communication training',
+        'Leadership & personality development',
+        'Value-based and life skills education',
+        'Sports, arts, and cultural engagement',
+      ],
+      color: 'from-emerald-500 to-green-600',
+      soft: 'from-emerald-50 to-green-50',
+      bullet: 'text-emerald-600',
+      emoji: '🌍',
     },
     {
-      icon: <Shield className="w-10 h-10" />,
-      title: 'Safe Environment',
-      description: 'CCTV surveillance, trained security and zero tolerance bullying policy.',
-      color: 'from-red-400 to-red-600',
-    },
-    {
-      icon: <Lightbulb className="w-10 h-10" />,
-      title: 'Holistic Development',
-      description: 'Focus on sports, arts, life skills and character building.',
-      color: 'from-yellow-400 to-yellow-600',
-    },
-    {
-      icon: <Award className="w-10 h-10" />,
-      title: 'Modern Infrastructure',
-      description: 'Well equipped classrooms, labs, library and sports facilities.',
-      color: 'from-purple-400 to-purple-600',
+      icon: <Trophy className="w-10 h-10" />,
+      title: 'What Sets Us Apart',
+      subtitle: '',
+      points: [
+        'Structured CBSE-aligned curriculum',
+        'Highly committed and skilled educators',
+        'Focus on discipline with care',
+        'Consistent academic monitoring',
+        'Safe and motivating learning environment',
+      ],
+      color: 'from-amber-500 to-orange-600',
+      soft: 'from-amber-50 to-orange-50',
+      bullet: 'text-amber-600',
+      emoji: '🏆',
     },
     {
       icon: <Heart className="w-10 h-10" />,
-      title: 'Caring Community',
-      description: 'Warm environment where students, teachers and parents work together.',
-      color: 'from-pink-400 to-pink-600',
+      title: 'Strong Student Support',
+      subtitle: 'Every child matters, every step counts.',
+      points: [
+        'Individual mentoring and guidance',
+        'Regular parent connect programs',
+        'Remedial and enrichment sessions',
+        'Encouragement for every learner to excel',
+      ],
+      color: 'from-fuchsia-500 to-pink-600',
+      soft: 'from-fuchsia-50 to-pink-50',
+      bullet: 'text-fuchsia-600',
+      emoji: '🤝',
+    },
+    {
+      icon: <Award className="w-10 h-10" />,
+      title: 'Future-Ready Learning',
+      subtitle: 'We prepare students for life, not just exams.',
+      points: [
+        'Confidence & communication',
+        'Analytical and problem-solving skills',
+        'Digital literacy and adaptability',
+        'Strong values and responsibility',
+      ],
+      color: 'from-violet-500 to-indigo-600',
+      soft: 'from-violet-50 to-indigo-50',
+      bullet: 'text-violet-600',
+      emoji: '🚀',
     },
   ];
 
@@ -117,8 +158,33 @@ const AboutSection = () => {
       <ParticlesBackground />
       <div className="relative z-10 max-w-[95rem] mx-auto px-2 sm:px-3 lg:px-4">
         <div className="mb-20">
-          <div className="grid gap-10 lg:grid-cols-[1fr,320px] items-start">
-            <div>
+          <div className="flex flex-col lg:flex-row gap-10 items-start">
+            {/* Founder Image and Details: On mobile, appears above message; on desktop, right side */}
+            <div className="w-full flex flex-col items-center mx-auto order-1 lg:order-2 lg:max-w-[320px]">
+              <img
+                src={founderImageUrls[0]}
+                onError={(e) => {
+                  const target = e.currentTarget;
+                  const nextIndex = Number(target.dataset.fallbackIndex || '0') + 1;
+                  if (nextIndex < founderImageUrls.length) {
+                    target.dataset.fallbackIndex = String(nextIndex);
+                    target.src = founderImageUrls[nextIndex];
+                  }
+                }}
+                alt="Founder and Correspondent Suganthi Jambulingam"
+                className="w-full max-w-[280px] object-cover"
+              />
+              <div className="mt-5 max-w-[320px] text-gray-700 leading-relaxed text-left">
+                <p className="font-bold text-[#1E3F8A]">Founder & Correspondent</p>
+                <p className="font-semibold">Suganthi Jambulingam M.Com., B.Ed.,</p>
+                <p>A.P.J. Abdul Kalam Awadee,</p>
+                <p>Therapist and Divine Mentor,</p>
+                <p>Meditation Instruction,</p>
+                <p>Organic Agriculturalist. </p>
+              </div>
+            </div>
+            {/* Founder's Message: On mobile, appears below image; on desktop, left side */}
+            <div className="order-2 lg:order-1 flex-1">
               <h3 className="text-3xl md:text-4xl font-bold mb-5" style={{ color: '#1E3F8A' }}>
                 Founder&apos;s Message
               </h3>
@@ -162,30 +228,6 @@ const AboutSection = () => {
 
               </div>
             </div>
-
-            <div className="w-full flex flex-col items-center mx-auto">
-              <img
-                src={founderImageUrls[0]}
-                onError={(e) => {
-                  const target = e.currentTarget;
-                  const nextIndex = Number(target.dataset.fallbackIndex || '0') + 1;
-                  if (nextIndex < founderImageUrls.length) {
-                    target.dataset.fallbackIndex = String(nextIndex);
-                    target.src = founderImageUrls[nextIndex];
-                  }
-                }}
-                alt="Founder and Correspondent Suganthi Jambulingam"
-                className="w-full max-w-[280px] object-cover"
-              />
-              <div className="mt-5 max-w-[320px] text-gray-700 leading-relaxed text-left">
-                <p className="font-bold text-[#1E3F8A]">Founder & Correspondent</p>
-                <p className="font-semibold">Suganthi Jambulingam M.Com., B.Ed.,</p>
-                <p>Abdul Kalam Awadee,</p>
-                <p>Therapist and Divine Mentor,</p>
-                <p>Meditation Instruction,</p>
-                <p>Organic Agriculturalist. </p>
-              </div>
-            </div>
           </div>
         </div>
 
@@ -226,17 +268,6 @@ const AboutSection = () => {
             </div>
           </div>
         </div>
-
-        <div className="text-center mb-16 animate-fade-in-up">
-          <h2 className="text-5xl font-bold mb-6" style={{ color: '#1E3F8A' }}>Welcome to Minervaa School</h2>
-          <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed mb-8">
-            A place where young minds blossom, dreams take flight and futures are shaped with care, dedication and excellence.
-          </p>
-          <p className="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed">
-            At Minervaa Vidhya Mandhir, we believe that every child is unique and deserves an education that celebrates their individuality while nurturing their talents. Since our establishment, we have been committed to providing quality education that goes beyond textbooks, fostering critical thinking, creativity and strong moral values.
-          </p>
-        </div>
-
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-20">
           {stats.map((stat, index) => (
             <div
@@ -257,18 +288,73 @@ const AboutSection = () => {
         </div>
 
         <div className="mb-12">
-          <h3 className="text-4xl font-bold text-center mb-12" style={{ color: '#1E3F8A' }}>Why Choose Minervaa School</h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {features.map((feature, index) => (
+          <h3 className="text-4xl font-bold text-center mb-12" style={{ color: '#1E3F8A' }}>Academic Excellence Redefined</h3>
+          <div className="grid lg:grid-cols-2 gap-8 mb-8">
+            {features.slice(0, 2).map((feature, index) => (
               <div
-                key={index}
-                className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 group"
+                key={`top-${index}-${feature.title}`}
+                className={`relative overflow-hidden rounded-2xl border border-white/70 bg-gradient-to-br ${feature.soft} p-8 shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-500 group`}
               >
-                <div className={`bg-gradient-to-br ${feature.color} text-white w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                  {feature.icon}
+                <div className={`absolute inset-0 bg-gradient-to-r ${feature.color} scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-700 ease-out`} />
+                <div className="absolute inset-0 bg-white/92 group-hover:bg-white/0 transition-colors duration-700" />
+
+                <div className="relative z-10">
+                  <div className="flex items-center gap-4 mb-5">
+                    <div className={`bg-gradient-to-br ${feature.color} text-white w-16 h-16 rounded-xl flex items-center justify-center transition-transform duration-700 group-hover:rotate-[360deg]`}>
+                      {feature.icon}
+                    </div>
+                    <div>
+                      <p className="text-2xl leading-none mb-1">{feature.emoji}</p>
+                      <h4 className="text-2xl font-bold text-gray-800 group-hover:text-white transition-colors duration-500">{feature.title}</h4>
+                    </div>
+                  </div>
+
+                  {feature.subtitle && <p className="text-gray-700 font-semibold mb-4 group-hover:text-white transition-colors duration-500">{feature.subtitle}</p>}
+
+                  <ul className="space-y-2.5">
+                    {feature.points.map((point: string) => (
+                      <li key={point} className="flex items-start gap-3 text-gray-700 group-hover:text-white transition-colors duration-500">
+                        <span className={`${feature.bullet} mt-0.5 group-hover:text-white transition-colors duration-500`}>•</span>
+                        <span>{point}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <h4 className="text-xl font-bold text-gray-800 mb-3">{feature.title}</h4>
-                <p className="text-gray-600 leading-relaxed">{feature.description}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="grid lg:grid-cols-3 gap-8">
+            {features.slice(2).map((feature, index) => (
+              <div
+                key={`bottom-${index}-${feature.title}`}
+                className={`relative overflow-hidden rounded-2xl border border-white/70 bg-gradient-to-br ${feature.soft} p-8 shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-500 group`}
+              >
+                <div className={`absolute inset-0 bg-gradient-to-r ${feature.color} scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-700 ease-out`} />
+                <div className="absolute inset-0 bg-white/92 group-hover:bg-white/0 transition-colors duration-700" />
+
+                <div className="relative z-10">
+                  <div className="flex items-center gap-4 mb-5">
+                    <div className={`bg-gradient-to-br ${feature.color} text-white w-16 h-16 rounded-xl flex items-center justify-center transition-transform duration-700 group-hover:rotate-[360deg]`}>
+                      {feature.icon}
+                    </div>
+                    <div>
+                      <p className="text-2xl leading-none mb-1">{feature.emoji}</p>
+                      <h4 className="text-2xl font-bold text-gray-800 group-hover:text-white transition-colors duration-500">{feature.title}</h4>
+                    </div>
+                  </div>
+
+                  {feature.subtitle && <p className="text-gray-700 font-semibold mb-4 group-hover:text-white transition-colors duration-500">{feature.subtitle}</p>}
+
+                  <ul className="space-y-2.5">
+                    {feature.points.map((point: string) => (
+                      <li key={point} className="flex items-start gap-3 text-gray-700 group-hover:text-white transition-colors duration-500">
+                        <span className={`${feature.bullet} mt-0.5 group-hover:text-white transition-colors duration-500`}>•</span>
+                        <span>{point}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             ))}
           </div>

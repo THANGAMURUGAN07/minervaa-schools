@@ -6,51 +6,74 @@ import { getPublicAssetUrl } from '../utils/publicAsset';
 const resolveImageUrl = (value: string) =>
   /^https?:\/\//i.test(value) ? value : getPublicAssetUrl(value);
 
-const GallerySection = () => {
+const HappeningsSection = () => {
   const [activeTab, setActiveTab] = useState<'images' | 'videos'>('images');
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
   const defaultDriveLink = 'https://drive.google.com/drive/folders/1B3nLfQ-FCS7lAXOwag21_-wgHHcN3iCd?usp=sharing';
 
   const events = [
     {
+      emoji: '🇮🇳',
       title: 'Independence Day',
+      subtitle: 'Pride of Freedom',
       thumbnail: '/webp/independence_day.webp',
       driveLink: defaultDriveLink,
     },
     {
+      emoji: '🌈',
       title: 'Rainbow Day',
+      subtitle: 'Colors of Joy',
       thumbnail: '/webp/rainbow_day.webp',
       driveLink: 'https://drive.google.com/drive/folders/10lahVHxNPCb0u6Im68Acli9PHxfarJLN?usp=sharing',
     },
     {
-      title: 'Bharathiyar Celebration Day',
+      emoji: '📜',
+      title: 'Bharathiyar Day',
+      subtitle: 'Spirit of Wisdom',
       thumbnail: '/webp/bharathiyar_celebration_day.webp',
       driveLink: 'https://drive.google.com/drive/folders/1URUjY_Ap-gg9ZjQT56oouMzyfefPpilg?usp=sharing',
     },
     {
-      title: 'Vijayadhasamy',
+      emoji: '🪔',
+      title: 'Vijayadasami',
+      subtitle: 'A New Beginning',
       thumbnail: '/webp/vijayadhasamy.webp',
       driveLink: 'https://drive.google.com/drive/folders/1sglvKputKPV5xNuoNOFk6l6DAQe_FaBe?usp=sharing',
     },
     {
+      emoji: '🍲',
       title: 'Food Festival',
+      subtitle: 'Taste & Celebrate',
       thumbnail: '/webp/food_festival.webp',
       driveLink: 'https://drive.google.com/drive/folders/1x0_OCCvbVp-JSYvwH4zcbu8W7EtZXdZQ?usp=sharing',
     },
     {
+      emoji: '🏆',
       title: 'Award Day',
+      subtitle: 'Celebrating Excellence',
       thumbnail: '/webp/award_day.webp',
       driveLink: 'https://drive.google.com/drive/folders/17-sIaYLUh_UPWGj5nX3Ex6TgT5GyFqt2?usp=sharing',
     },
     {
-      title: 'Pongal Celebration',
+      emoji: '🌾',
+      title: 'Pongal Festival',
+      subtitle: 'Tradition & Happiness',
       thumbnail: '/webp/pongal_celebration.webp',
       driveLink: 'https://drive.google.com/drive/folders/15ysCMHTKh80jj0oE26I6SU5Rjv4fE2dp?usp=sharing',
     },
     {
+      emoji: '🎭',
       title: 'Annual Day',
+      subtitle: 'Talent Unleashed',
       thumbnail: '/webp/annual_day.webp',
       driveLink: 'https://drive.google.com/drive/folders/1fyXQJ27XvxKn8nH51TWlD-yGx1Zvco83?usp=sharing',
+    },
+    {
+      emoji: '🎉',
+      title: 'Inauguration Day',
+      subtitle: 'A Grand Beginning',
+      thumbnail: '/webp/inagurationday.webp',
+      driveLink: 'https://drive.google.com/drive/folders/1f5dM7vsviHAMJlMrT3CVV9wyY-nGNEt4?usp=sharing',
     },
   ];
 
@@ -82,12 +105,12 @@ const GallerySection = () => {
   ];
 
   return (
-    <section id="gallery" className="relative overflow-hidden py-20">
+    <section id="happenings" className="relative overflow-hidden py-20">
       <ParticlesBackground />
       <div className="relative z-10 max-w-[95rem] mx-auto px-2 sm:px-3 lg:px-4">
         <div className="text-center mb-12">
-          <h2 className="text-5xl font-bold mb-6" style={{ color: '#1E3F8A' }}>Our Gallery</h2>
-          <p className="text-xl text-gray-600">Capturing moments of joy, learning, and growth</p>
+          <h2 className="text-5xl font-bold mb-6" style={{ color: '#1E3F8A' }}>Happenings</h2>
+          <p className="text-xl text-gray-600">Every moment at Minervaa is a memory of learning and celebration.</p>
         </div>
 
         <div className="flex justify-center mb-12">
@@ -120,14 +143,14 @@ const GallerySection = () => {
         </div>
 
         {activeTab === 'images' && (
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {events.map((event, index) => (
               <a
                 key={index}
-                href={event.driveLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300"
+                href={event.driveLink || '#'}
+                target={event.driveLink ? "_blank" : undefined}
+                rel={event.driveLink ? "noopener noreferrer" : undefined}
+                className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 flex flex-col"
               >
                 <div className="relative h-48 overflow-hidden">
                   <img
@@ -136,7 +159,11 @@ const GallerySection = () => {
                     className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                  <h3 className="absolute bottom-4 left-4 text-white font-bold text-lg">{event.title}</h3>
+                  <div className="absolute bottom-4 left-4">
+                    <div className="text-3xl mb-1">{event.emoji}</div>
+                    <h3 className="text-white font-bold text-lg leading-tight">{event.title}</h3>
+                    <div className="text-white text-sm opacity-90">{event.subtitle}</div>
+                  </div>
                 </div>
               </a>
             ))}
@@ -200,4 +227,4 @@ const GallerySection = () => {
   );
 };
 
-export default GallerySection;
+export default HappeningsSection;

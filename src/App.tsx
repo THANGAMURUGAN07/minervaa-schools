@@ -5,7 +5,7 @@ import HomeSection from './components/HomeSection';
 import AboutSection from './components/AboutSection';
 import AcademicsSection from './components/AcademicsSection';
 import FacilitiesSection from './components/FacilitiesSection.tsx';
-import GallerySection from './components/GallerySection';
+import HappeningsSection from './components/GallerySection';
 import CareersSection from './components/CareersSection';
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
@@ -29,7 +29,7 @@ function App() {
         <AboutSection />
         <AcademicsSection />
         <FacilitiesSection />
-        <GallerySection />
+        <HappeningsSection />
         <CareersSection />
         <ContactSection />
         <Footer />

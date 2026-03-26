@@ -12,7 +12,7 @@ const Navigation = () => {
     { name: 'About Us', id: 'about' },
     { name: 'Academics', id: 'academics' },
     { name: 'Facilities', id: 'facilities' },
-    { name: 'Gallery', id: 'gallery' },
+    { name: 'Happenings', id: 'happenings' },
     { name: 'Careers', id: 'careers' },
     { name: 'Contact Us', id: 'contact' },
   ];

@@ -40,6 +40,18 @@ const facilities: Facility[] = [
 	{
 		category: 'Facilities',
 		icon: <BookOpen className="w-12 h-12" />,
+		title: 'Music & Arts',
+		color: 'from-pink-500 to-purple-500',
+		image: '/webp/musicandarts1.webp',
+		overview: '',
+		technology: 'Dedicated spaces for music, dance, and arts with expert instructors, fostering creativity, self-expression, and cultural appreciation among students.',
+		experience: '',
+		access: '',
+		viewAllImage: '/webp/musicandarts2.webp',
+	},
+	{
+		category: 'Facilities',
+		icon: <BookOpen className="w-12 h-12" />,
 		title: 'Library',
 		color: 'from-yellow-500 to-orange-500',
 		image: '/webp/library3.webp',
