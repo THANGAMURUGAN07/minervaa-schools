@@ -13,6 +13,13 @@ const HappeningsSection = () => {
 
   const events = [
     {
+      emoji: '🎉',
+      title: 'Inauguration Day',
+      subtitle: 'A Grand Beginning',
+      thumbnail: '/webp/inagurationday.webp',
+      driveLink: 'https://drive.google.com/drive/folders/1f5dM7vsviHAMJlMrT3CVV9wyY-nGNEt4?usp=sharing',
+    },
+    {
       emoji: '🇮🇳',
       title: 'Independence Day',
       subtitle: 'Pride of Freedom',
@@ -67,13 +74,6 @@ const HappeningsSection = () => {
       subtitle: 'Talent Unleashed',
       thumbnail: '/webp/annual_day.webp',
       driveLink: 'https://drive.google.com/drive/folders/1fyXQJ27XvxKn8nH51TWlD-yGx1Zvco83?usp=sharing',
-    },
-    {
-      emoji: '🎉',
-      title: 'Inauguration Day',
-      subtitle: 'A Grand Beginning',
-      thumbnail: '/webp/inagurationday.webp',
-      driveLink: 'https://drive.google.com/drive/folders/1f5dM7vsviHAMJlMrT3CVV9wyY-nGNEt4?usp=sharing',
     },
   ];
 

@@ -288,7 +288,7 @@ const AboutSection = () => {
         </div>
 
         <div className="mb-12">
-          <h3 className="text-4xl font-bold text-center mb-12" style={{ color: '#1E3F8A' }}>Academic Excellence Redefined</h3>
+          <h3 className="text-4xl font-bold text-center mb-12" style={{ color: '#1E3F8A' }}>Our Signature Learning Experience</h3>
           <div className="grid lg:grid-cols-2 gap-8 mb-8">
             {features.slice(0, 2).map((feature, index) => (
               <div

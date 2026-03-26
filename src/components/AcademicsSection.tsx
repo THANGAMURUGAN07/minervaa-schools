@@ -59,30 +59,6 @@ const AcademicsSection = () => {
           </p>
         </div>
 
-        <div className="mb-20 flex flex-col items-center w-full">
-          <h3 className="text-5xl md:text-6xl font-extrabold mb-6 text-[#1E3F8A] tracking-tight drop-shadow-xl text-center bg-white/90 px-8 py-4 rounded-2xl shadow-lg border-b-8 border-blue-200">
-            Academic Excellence Redefined
-          </h3>
-          <div className="text-2xl text-gray-800 font-medium mb-12 text-center max-w-4xl mx-auto leading-relaxed">
-            Education at our school is designed to <span className="text-[#1E3F8A] font-bold">inspire</span>, <span className="text-[#1E3F8A] font-bold">empower</span>, and <span className="text-[#1E3F8A] font-bold">transform</span> young minds into confident individuals ready for the future.
-          </div>
-          <div className="w-full flex justify-center">
-            <div className="bg-gradient-to-br from-blue-50 via-white to-blue-100 rounded-3xl shadow-xl px-8 py-8 max-w-3xl w-full border border-blue-200">
-              <div className="flex items-center gap-3 mb-4 justify-center">
-                <span className="text-4xl">🌿</span>
-                <span className="text-2xl md:text-3xl font-extrabold text-[#1E3F8A] drop-shadow-sm">A Thoughtfully Designed Learning Experience</span>
-              </div>
-              <ul className="text-lg md:text-xl text-gray-800 font-medium space-y-4 pl-2 md:pl-6">
-                <li className="flex items-start gap-3"><span className="text-blue-500 mt-1">•</span><span>We don’t just teach lessons — we create meaningful learning journeys.</span></li>
-                <li className="flex items-start gap-3"><span className="text-blue-500 mt-1">•</span><span>Concept-driven learning with real-world connections</span></li>
-                <li className="flex items-start gap-3"><span className="text-blue-500 mt-1">•</span><span>Student-centric classrooms that encourage curiosity</span></li>
-                <li className="flex items-start gap-3"><span className="text-blue-500 mt-1">•</span><span>Focus on understanding, not memorizing</span></li>
-                <li className="flex items-start gap-3"><span className="text-blue-500 mt-1">•</span><span>Personalized attention for every learner</span></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
         <div className="relative">
           <h3 className="text-3xl font-bold text-center mb-8" style={{ color: '#1E3F8A' }}>Our Programs</h3>
 
@@ -137,6 +113,56 @@ const AcademicsSection = () => {
             ))}
           </div>
         </div>
+
+        <section className="mt-20 lg:mt-24">
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+            <div>
+              <p className="uppercase tracking-[0.2em] text-sm font-semibold text-emerald-600 mb-3">Montessori Learning</p>
+              <h3 className="text-4xl md:text-5xl font-extrabold leading-tight mb-5" style={{ color: '#1E3F8A' }}>
+                Hands-On Discovery,
+                <br />
+                Joyful Growth
+              </h3>
+              <p className="text-lg md:text-xl text-gray-700 leading-relaxed mb-6">
+                Our Montessori environment empowers children to explore at their own pace through purposeful materials,
+                movement, and practical life activities that build confidence, concentration, and independence.
+              </p>
+
+              <ul className="space-y-4 text-gray-700 text-base md:text-lg">
+                <li className="flex items-start gap-3">
+                  <span className="text-emerald-600 mt-1">✦</span>
+                  <span>Child-led learning pathways with guided teacher support</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-emerald-600 mt-1">✦</span>
+                  <span>Sensorial activities that strengthen focus and coordination</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-emerald-600 mt-1">✦</span>
+                  <span>Practical life exercises that develop independence and responsibility</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-emerald-600 mt-1">✦</span>
+                  <span>Mixed-age collaboration that builds empathy and leadership</span>
+                </li>
+              </ul>
+            </div>
+
+            <div className="relative min-h-[420px]">
+              <img
+                src="/webp/montessorylearning1.webp"
+                alt="Montessori hands-on classroom learning"
+                className="absolute top-0 left-0 w-[78%] h-[270px] md:h-[300px] object-cover rounded-[2rem] shadow-2xl rotate-[-3deg]"
+              />
+              <img
+                src="/webp/montessorylearning2.webp"
+                alt="Children engaged in Montessori activities"
+                className="absolute bottom-0 right-0 w-[78%] h-[270px] md:h-[300px] object-cover rounded-[2rem] shadow-2xl rotate-[4deg]"
+              />
+              <div className="absolute inset-0 -z-10 bg-gradient-to-br from-emerald-100/60 via-cyan-100/40 to-yellow-100/60 blur-2xl" />
+            </div>
+          </div>
+        </section>
       </div>
     </section>
   );
