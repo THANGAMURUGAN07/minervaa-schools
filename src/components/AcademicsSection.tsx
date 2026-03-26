@@ -163,6 +163,39 @@ const AcademicsSection = () => {
             </div>
           </div>
         </section>
+
+        <section className="mt-20 lg:mt-24">
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+            <div>
+              <p className="uppercase tracking-[0.2em] text-sm font-semibold text-sky-600 mb-3">Global Learning Pathway</p>
+              <h3 className="text-4xl md:text-5xl font-extrabold leading-tight mb-5" style={{ color: '#1E3F8A' }}>
+                Academic Excellence with
+                <br />
+                Global Perspective
+              </h3>
+              <p className="text-lg md:text-xl text-gray-700 leading-relaxed mb-6">
+                Our academic framework is designed to cultivate a passion for lifelong learning, combining strong foundational knowledge with global outlooks. We foster an environment where students are encouraged to think independently, explore deeply, and excel confidently in an ever-evolving world.
+              </p>
+              <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
+                With a student-centric approach and progressive teaching methodologies, we ensure that every learner reaches their highest potential-academically, socially, and personally.
+              </p>
+            </div>
+
+            <div className="relative min-h-[420px]">
+              <img
+                src="/webp/globe.webp"
+                alt="Global perspective learning"
+                className="absolute top-0 left-0 w-[78%] h-[270px] md:h-[300px] object-cover rounded-[2rem] shadow-2xl rotate-[-3deg]"
+              />
+              <img
+                src="/webp/horse.png"
+                alt="Horse riding activity"
+                className="absolute bottom-0 right-0 w-[78%] h-[270px] md:h-[300px] object-cover rounded-[2rem] shadow-2xl rotate-[4deg]"
+              />
+              <div className="absolute inset-0 -z-10 bg-gradient-to-br from-sky-100/60 via-blue-100/40 to-amber-100/60 blur-2xl" />
+            </div>
+          </div>
+        </section>
       </div>
     </section>
   );
