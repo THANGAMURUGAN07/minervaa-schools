@@ -67,7 +67,7 @@ const HomeSection = () => {
               <h1 className="hero-title text-5xl md:text-8xl text-white mb-6 leading-tight">
                 <span
                   className="font-extrabold text-white text-5xl md:text-7xl tracking-normal drop-shadow-[0_4px_16px_rgba(0,0,0,0.25)]"
-                  style={{ fontFamily: 'Comic Sans MS, Comic Sans, cursive', letterSpacing: '-0.02em' }}
+                  style={{ fontFamily: "Georgia, 'Times New Roman', Times, serif", letterSpacing: '-0.02em' }}
                 >
                   Minervaa Vidhya Mandhir
                 </span>
