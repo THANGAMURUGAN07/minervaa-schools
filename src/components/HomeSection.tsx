@@ -4,7 +4,7 @@ import { ChevronRight, ChevronLeft } from 'lucide-react';
 import { Sparkles } from 'lucide-react';
 import { getPublicAssetUrl } from '../utils/publicAsset';
 
-const HOME_GROUP_IMAGE_CLOUDINARY_URL = '\group.JPG';
+const HOME_GROUP_IMAGE_CLOUDINARY_URL = '/webp/group.webp';
 
 const HomeSection = () => {
   const [showAdmissionsCard, setShowAdmissionsCard] = useState(true);
@@ -29,7 +29,7 @@ const HomeSection = () => {
     ? `https://res.cloudinary.com/${cloudName}/video/upload/so_1,f_jpg,q_auto,w_1200/${heroVideoPublicId}.jpg`
     : "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600'%3E%3Crect fill='%234c1d95' width='1200' height='600'/%3E%3C/svg%3E";
 
-  const groupImageSrc = HOME_GROUP_IMAGE_CLOUDINARY_URL || getPublicAssetUrl('/group.JPG');
+  const groupImageSrc = HOME_GROUP_IMAGE_CLOUDINARY_URL || getPublicAssetUrl('/webp/group.webp');
 
 
   useEffect(() => {

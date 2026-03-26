@@ -8,7 +8,7 @@ const AboutSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const founderImageUrls = [
     'https://res.cloudinary.com/dgisxiqun/image/upload/v1774424708/mam_fquw0d.jpg',
-    ...getPublicAssetFallbackUrls('/mam.jpg'),
+    ...getPublicAssetFallbackUrls('/webp/mam.webp'),
   ];
 
   useEffect(() => {

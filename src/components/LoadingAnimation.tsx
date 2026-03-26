@@ -15,7 +15,7 @@ const LoadingAnimation = () => {
   return (
     <div className="loading-overlay">
       <img
-        src={getPublicAssetUrl('/tree.png')}
+        src={getPublicAssetUrl('/webp/tree.webp')}
         alt="Loading Tree"
         className="tree-animation"
       />

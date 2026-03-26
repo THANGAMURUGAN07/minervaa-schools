@@ -29,7 +29,7 @@ const Footer = () => {
           <div>
             <div className="mb-6 inline-flex bg-white rounded-2xl shadow-md px-3 py-2">
               <img
-                src={getPublicAssetUrl('/Logo.png')}
+                src={getPublicAssetUrl('/webp/logo.webp')}
                 alt="Minervaa Vidhya Mandhir logo"
                 className="h-16 w-auto object-contain"
               />

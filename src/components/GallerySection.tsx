@@ -14,42 +14,42 @@ const GallerySection = () => {
   const events = [
     {
       title: 'Independence Day',
-      thumbnail: '/independence%20day.JPG',
+      thumbnail: '/webp/independence_day.webp',
       driveLink: defaultDriveLink,
     },
     {
       title: 'Rainbow Day',
-      thumbnail: '/rainbow%20day.jpeg',
+      thumbnail: '/webp/rainbow_day.webp',
       driveLink: 'https://drive.google.com/drive/folders/10lahVHxNPCb0u6Im68Acli9PHxfarJLN?usp=sharing',
     },
     {
       title: 'Bharathiyar Celebration Day',
-      thumbnail: '/bharathiyar%20celebration%20day.JPG',
+      thumbnail: '/webp/bharathiyar_celebration_day.webp',
       driveLink: 'https://drive.google.com/drive/folders/1URUjY_Ap-gg9ZjQT56oouMzyfefPpilg?usp=sharing',
     },
     {
       title: 'Vijayadhasamy',
-      thumbnail: '/vijayadhasamy.JPG',
+      thumbnail: '/webp/vijayadhasamy.webp',
       driveLink: 'https://drive.google.com/drive/folders/1sglvKputKPV5xNuoNOFk6l6DAQe_FaBe?usp=sharing',
     },
     {
       title: 'Food Festival',
-      thumbnail: '/food%20festival.jpeg',
+      thumbnail: '/webp/food_festival.webp',
       driveLink: 'https://drive.google.com/drive/folders/1x0_OCCvbVp-JSYvwH4zcbu8W7EtZXdZQ?usp=sharing',
     },
     {
       title: 'Award Day',
-      thumbnail: '/award%20day.jpeg',
+      thumbnail: '/webp/award_day.webp',
       driveLink: 'https://drive.google.com/drive/folders/17-sIaYLUh_UPWGj5nX3Ex6TgT5GyFqt2?usp=sharing',
     },
     {
       title: 'Pongal Celebration',
-      thumbnail: '/pongal%20celebration.jpeg',
+      thumbnail: '/webp/pongal_celebration.webp',
       driveLink: 'https://drive.google.com/drive/folders/15ysCMHTKh80jj0oE26I6SU5Rjv4fE2dp?usp=sharing',
     },
     {
       title: 'Annual Day',
-      thumbnail: '/annual%20day.JPG',
+      thumbnail: '/webp/annual_day.webp',
       driveLink: 'https://drive.google.com/drive/folders/1fyXQJ27XvxKn8nH51TWlD-yGx1Zvco83?usp=sharing',
     },
   ];
