@@ -154,9 +154,9 @@ const CareersSection = () => {
   };
 
   return (
-    <section id="careers" className="py-20 bg-gradient-to-b from-indigo-50 to-white">
+    <section id="careers" className="py-14 md:py-16 bg-gradient-to-b from-indigo-50 to-white">
       <div className="max-w-[95rem] mx-auto px-2 sm:px-3 lg:px-4">
-        <div className="text-center mb-16 animate-fade-in-up">
+        <div className="text-center mb-10 md:mb-12 animate-fade-in-up">
           <h2 className="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight" style={{ color: '#1E3F8A' }}>
             Careers at Minervaa
             <span className="inline-block align-middle ml-2">
@@ -196,7 +196,7 @@ Be part of a journey that shapes both educators and learners.
                 </button>
               </div>
 
-          <form onSubmit={handleSubmit} className="space-y-8">
+          <form onSubmit={handleSubmit} className="space-y-6">
             {/* Personal Details */}
             <div>
               <h3 className="text-2xl font-bold text-indigo-900 border-b border-indigo-100 pb-2 mb-6">

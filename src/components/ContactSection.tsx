@@ -4,15 +4,15 @@ import { SiFacebook, SiInstagram, SiYoutube } from 'react-icons/si';
 
 const ContactSection = () => {
   return (
-    <section id="contact" className="relative overflow-hidden py-20">
+    <section id="contact" className="relative overflow-hidden pt-0 mt-0 py-14 md:py-16">
       <ParticlesBackground />
       <div className="relative z-10 max-w-[95rem] mx-auto px-2 sm:px-3 lg:px-4">
-        <div className="text-center mb-16">
+        <div className="text-center mb-4 md:mb-6">
           <h2 className="text-5xl font-bold mb-6" style={{ color: '#1E3F8A' }}>Get In Touch</h2>
           <p className="text-xl text-gray-600">We’re here to guide you every step of the way in your child’s learning journey. Whether you have questions about admissions, curriculum, or campus life — feel free to reach out to us anytime.</p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="grid lg:grid-cols-2 gap-8">
           <div className="bg-white rounded-3xl p-8 shadow-xl flex flex-col gap-6">
             <h3 className="text-3xl font-bold text-blue-900 mb-2 flex items-center gap-2">
               <span role="img" aria-label="phone">📞</span> Let’s Connect
@@ -49,7 +49,7 @@ const ContactSection = () => {
             </div>
           </div>
 
-          <div className="space-y-8">
+          <div className="space-y-6">
             <div className="bg-white rounded-3xl p-8 shadow-xl">
               <h3 className="text-3xl font-bold text-gray-800 mb-6">Contact Information</h3>
 

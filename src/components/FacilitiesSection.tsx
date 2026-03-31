@@ -310,10 +310,10 @@ const FacilitiesSection = () => {
 	];
 
 	return (
-		<section id="facilities" className="relative overflow-hidden py-20">
+		<section id="facilities" className="relative overflow-hidden pt-0 mt-0 py-14 md:py-16 pb-0">
 			<ParticlesBackground />
 			<div className="relative z-10 max-w-[95rem] mx-auto px-2 sm:px-3 lg:px-4">
-				<div className="mb-10 sm:mb-12">
+				<div className="mb-8 sm:mb-10">
 					<h2 className="text-5xl font-medium" style={{ color: '#3f3f46' }}>
 						Facilities
 					</h2>
@@ -342,11 +342,12 @@ const FacilitiesSection = () => {
 											key={`${facility.title}-${position}`}
 											className={`relative rounded-lg bg-cover bg-center shadow-xl h-[300px] sm:h-[460px] md:h-[520px] transition-all duration-500 ${
 												isCenter
-													? 'w-[48vw] max-w-[240px] sm:w-[58vw] md:w-[60vw] lg:w-[62vw] sm:max-w-[780px] opacity-100'
-													: isNearSide
-														? 'w-[12vw] min-w-[44px] sm:w-[100px] md:w-[118px] lg:w-[125px] opacity-95'
-														: 'w-[9vw] min-w-[34px] lg:w-[88px] xl:w-[98px] opacity-85'
+												? 'w-[48vw] max-w-[240px] sm:w-[58vw] md:w-[60vw] lg:w-[62vw] sm:max-w-[780px] opacity-100'
+												: isNearSide
+													? 'w-[12vw] min-w-[44px] sm:w-[100px] md:w-[118px] lg:w-[125px] opacity-95 cursor-pointer hover:scale-105'
+													: 'w-[9vw] min-w-[34px] lg:w-[88px] xl:w-[98px] opacity-85 cursor-pointer hover:scale-105'
 											}`}
+											onClick={!isCenter ? () => setCurrentSlide(facilityIndex) : undefined}
 										>
 											<img
 												src={resolveImageUrl(facility.image)}
@@ -403,7 +404,7 @@ const FacilitiesSection = () => {
 					</div>
 				</div>
 
-				<div className="mt-12 text-center">
+				<div className="mt-2 mb-0 text-center">
 					<button
 						onClick={() => setIsViewAllOpen(true)}
 						className="px-10 py-3 bg-[#2f3f9f] text-white rounded-md font-bold hover:bg-[#2a3687] transition-colors duration-300"

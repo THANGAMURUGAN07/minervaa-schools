@@ -1,15 +1,16 @@
 import ParticlesBackground from './ParticlesBackground';
 import { useEffect, useState, useRef } from 'react';
 import { Award, Users, GraduationCap, Heart, BookOpen, Trophy, Eye, Flag } from 'lucide-react';
-import { getPublicAssetFallbackUrls } from '../utils/publicAsset';
+import { getPublicAssetUrl } from '../utils/publicAsset';
 
 const AboutSection = () => {
   const [counters, setCounters] = useState({ years: 0, students: 0, staff: 0, success: 0 });
   const sectionRef = useRef<HTMLDivElement>(null);
   const founderImageUrls = [
-    'https://res.cloudinary.com/dgisxiqun/image/upload/v1774424708/mam_fquw0d.jpg',
-    ...getPublicAssetFallbackUrls('/webp/mam.webp'),
+    '/webp/mam.webp',
   ];
+  const visionBackground = getPublicAssetUrl('/webp/vision.webp');
+  const missionBackground = getPublicAssetUrl('/webp/mission.webp');
 
   useEffect(() => {
     let hasAnimated = false;
@@ -67,10 +68,34 @@ const AboutSection = () => {
   };
 
   const stats = [
-    { value: counters.years, label: 'Years of Excellence', icon: <Award className="w-8 h-8" />, suffix: '+', color: 'from-blue-500 to-cyan-500' },
-    { value: counters.students, label: 'Happy Students', icon: <Users className="w-8 h-8" />, suffix: '+', color: 'from-green-500 to-emerald-500' },
-    { value: counters.staff, label: 'Dedicated Staff', icon: <GraduationCap className="w-8 h-8" />, suffix: '+', color: 'from-orange-500 to-red-500' },
-    { value: counters.success, label: 'Success Rate', icon: <Trophy className="w-8 h-8" />, suffix: '%', color: 'from-purple-500 to-pink-500' },
+    {
+      value: counters.years,
+      label: 'Years of Excellence',
+      icon: <Award className="w-8 h-8" />, 
+      suffix: '+',
+      image: getPublicAssetUrl('/webp/excellence.webp'),
+    },
+    {
+      value: counters.students,
+      label: 'Happy Students',
+      icon: <Users className="w-8 h-8" />, 
+      suffix: '+',
+      image: getPublicAssetUrl('/webp/250+happystudents.webp'),
+    },
+    {
+      value: counters.staff,
+      label: 'Dedicated Staff',
+      icon: <GraduationCap className="w-8 h-8" />, 
+      suffix: '+',
+      image: getPublicAssetUrl('/webp/dedicatedstaffs.webp'),
+    },
+    {
+      value: counters.success,
+      label: 'Success Rate',
+      icon: <Trophy className="w-8 h-8" />, 
+      suffix: '%',
+      image: getPublicAssetUrl('/webp/100%25successrate.webp'),
+    },
   ];
 
   const features = [
@@ -80,10 +105,10 @@ const AboutSection = () => {
       subtitle: 'Our classrooms are dynamic, interactive, and future-ready.',
       points: [
         'Smart digital classrooms',
+        'Equal importance is given to all three languages (English, Tamil & Hindi).',
         'Activity & project-based learning',
         'Inquiry-based teaching methods',
         'Continuous assessment & feedback',
-        'Collaborative and discussion-driven sessions',
       ],
       color: 'from-blue-500 to-cyan-500',
       soft: 'from-blue-50 to-cyan-50',
@@ -95,7 +120,6 @@ const AboutSection = () => {
       title: 'Beyond Academics',
       subtitle: 'True education goes beyond books.',
       points: [
-        'Fluent English communication training',
         'Leadership & personality development',
         'Value-based and life skills education',
         'Sports, arts, and cultural engagement',
@@ -154,11 +178,11 @@ const AboutSection = () => {
   ];
 
   return (
-    <section id="about" className="relative overflow-hidden py-20" ref={sectionRef}>
+    <section id="about" className="relative overflow-hidden py-14 md:py-16" ref={sectionRef}>
       <ParticlesBackground />
       <div className="relative z-10 max-w-[95rem] mx-auto px-2 sm:px-3 lg:px-4">
-        <div className="mb-20">
-          <div className="flex flex-col lg:flex-row gap-10 items-start">
+        <div className="mb-12 md:mb-14">
+          <div className="flex flex-col lg:flex-row gap-6 md:gap-8 items-start">
             {/* Founder Image and Details: On mobile, appears above message; on desktop, right side */}
             <div className="w-full flex flex-col items-center mx-auto order-1 lg:order-2 lg:max-w-[320px]">
               <img
@@ -231,64 +255,79 @@ const AboutSection = () => {
           </div>
         </div>
 
-        <div className="mt-4 mb-20 pt-10 border-t-2 border-blue-100 max-w-6xl mx-auto">
+        <div className="mt-2 mb-0 md:mb-0 pt-6 border-t-2 border-blue-100 max-w-6xl mx-auto">
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-blue-700 mb-8 text-center">
             Our Educational Direction
           </p>
 
-          <div className="grid gap-10 md:grid-cols-2">
-            <div className="pl-5 border-l-4 border-blue-500">
-              <h4 className="text-2xl font-bold mb-4 text-[#1E3F8A] flex items-center gap-3">
-                <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-blue-100 text-blue-700">
-                  <Eye className="w-5 h-5" />
-                </span>
-                Our Vision
-              </h4>
-              <ul className="space-y-3 text-gray-800 text-lg leading-relaxed">
-                <li className="flex items-start gap-3"><span className="text-blue-600 mt-0.5">•</span><span>To achieve excellence in academic learning</span></li>
-                <li className="flex items-start gap-3"><span className="text-blue-600 mt-0.5">•</span><span>To nurture strong values, discipline, and integrity</span></li>
-                <li className="flex items-start gap-3"><span className="text-blue-600 mt-0.5">•</span><span>To develop confident and independent thinkers</span></li>
-                <li className="flex items-start gap-3"><span className="text-blue-600 mt-0.5">•</span><span>To build leadership qualities and a sense of responsibility</span></li>
-                <li className="flex items-start gap-3"><span className="text-blue-600 mt-0.5">•</span><span>To shape students into responsible and contributing citizens</span></li>
-              </ul>
+          <div className="grid gap-6 md:gap-8 md:grid-cols-2">
+            <div className="relative overflow-hidden rounded-2xl border border-blue-100 min-h-[320px]">
+              <div
+                className="absolute inset-0 bg-cover bg-center"
+                style={{ backgroundImage: `url(${visionBackground})` }}
+              />
+              <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(9, 30, 66, 0.52) 0%, rgba(9, 30, 66, 0.62) 100%)' }} />
+              <div className="relative z-10 p-6 md:p-7" style={{ textShadow: '0 1px 2px rgba(0, 0, 0, 0.55)' }}>
+                <h4 className="text-2xl font-bold mb-4 text-white flex items-center gap-3">
+                  <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/20 text-blue-100">
+                    <Eye className="w-5 h-5" />
+                  </span>
+                  Our Vision
+                </h4>
+                <ul className="space-y-3 text-blue-50 text-lg leading-relaxed">
+                  <li className="flex items-start gap-3"><span className="text-cyan-200 mt-0.5">•</span><span>To achieve excellence in academic learning</span></li>
+                  <li className="flex items-start gap-3"><span className="text-cyan-200 mt-0.5">•</span><span>To nurture strong values, discipline, and integrity</span></li>
+                  <li className="flex items-start gap-3"><span className="text-cyan-200 mt-0.5">•</span><span>To develop confident and independent thinkers</span></li>
+                  <li className="flex items-start gap-3"><span className="text-cyan-200 mt-0.5">•</span><span>To build leadership qualities and a sense of responsibility</span></li>
+                  <li className="flex items-start gap-3"><span className="text-cyan-200 mt-0.5">•</span><span>To shape students into responsible and contributing citizens</span></li>
+                </ul>
+              </div>
             </div>
 
-            <div className="pl-5 border-l-4 border-blue-500">
-              <h4 className="text-2xl font-bold mb-4 text-[#1E3F8A] flex items-center gap-3">
-                <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-blue-100 text-blue-700">
-                  <Flag className="w-5 h-5" />
-                </span>
-                Our Mission
-              </h4>
-              <ul className="space-y-3 text-gray-800 text-lg leading-relaxed">
-                <li className="flex items-start gap-3"><span className="text-blue-600 mt-0.5">•</span><span>To provide quality education in a positive environment</span></li>
-                <li className="flex items-start gap-3"><span className="text-blue-600 mt-0.5">•</span><span>To promote activity-based and concept-oriented learning</span></li>
-                <li className="flex items-start gap-3"><span className="text-blue-600 mt-0.5">•</span><span>To ensure overall development with strong values and life skill</span></li>
-              </ul>
+            <div className="relative overflow-hidden rounded-2xl border border-blue-100 min-h-[320px]">
+              <div
+                className="absolute inset-0 bg-cover bg-center"
+                style={{ backgroundImage: `url(${missionBackground})` }}
+              />
+              <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(9, 30, 66, 0.52) 0%, rgba(9, 30, 66, 0.62) 100%)' }} />
+              <div className="relative z-10 p-6 md:p-7" style={{ textShadow: '0 1px 2px rgba(0, 0, 0, 0.55)' }}>
+                <h4 className="text-2xl font-bold mb-4 text-white flex items-center gap-3">
+                  <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/20 text-blue-100">
+                    <Flag className="w-5 h-5" />
+                  </span>
+                  Our Mission
+                </h4>
+                <ul className="space-y-3 text-blue-50 text-lg leading-relaxed">
+                  <li className="flex items-start gap-3"><span className="text-cyan-200 mt-0.5">•</span><span>To provide quality education in a positive environment</span></li>
+                  <li className="flex items-start gap-3"><span className="text-cyan-200 mt-0.5">•</span><span>To promote activity-based and concept-oriented learning</span></li>
+                  <li className="flex items-start gap-3"><span className="text-cyan-200 mt-0.5">•</span><span>To ensure overall development with strong values and life skill</span></li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-20">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-0 md:mb-0">
           {stats.map((stat, index) => (
             <div
               key={index}
-              className="relative group rounded-2xl overflow-hidden p-0"
+              className="relative group rounded-2xl overflow-hidden p-0 h-48 sm:h-56 flex items-stretch"
+              style={{ backgroundImage: `url('${stat.image}')`, backgroundSize: 'cover', backgroundPosition: 'center' }}
             >
-              {/* Animated blue fill background */}
-              <div className="absolute inset-0 z-0 bg-[#0504AA] scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 ease-out" style={{ transitionProperty: 'transform' }} />
-              <div className="relative z-10 bg-white group-hover:bg-transparent rounded-2xl p-6 shadow-lg hover:shadow-xl transform hover:-translate-y-2 transition-all duration-300">
-                <div className={`bg-gradient-to-br ${stat.color} text-white w-16 h-16 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:bg-white/0 transition-all duration-300`}>{stat.icon}</div>
-                <div className="text-4xl font-bold text-gray-800 text-center mb-2 group-hover:text-white transition-colors duration-300">
+              {/* Overlay for readability */}
+              <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-colors duration-300 z-0" />
+              <div className="relative z-10 flex flex-col justify-center items-center w-full h-full p-6">
+                <div className="bg-white/90 text-[#1E3F8A] w-16 h-16 rounded-xl flex items-center justify-center mb-4 shadow-lg">{stat.icon}</div>
+                <div className="text-4xl font-bold text-white text-center mb-2 drop-shadow-lg">
                   {stat.value}{stat.suffix}
                 </div>
-                <div className="text-sm text-gray-600 text-center font-medium group-hover:text-white transition-colors duration-300">{stat.label}</div>
+                <div className="text-sm text-white text-center font-medium drop-shadow">{stat.label}</div>
               </div>
             </div>
           ))}
         </div>
 
-        <div className="mb-12">
-          <h3 className="text-4xl font-bold text-center mb-12" style={{ color: '#1E3F8A' }}>Our Signature Learning Experience</h3>
+        <div className="mb-0">
+          <h3 className="text-4xl font-bold text-center mb-8" style={{ color: '#1E3F8A' }}>Our Signature Learning Experience</h3>
           <div className="grid lg:grid-cols-2 gap-8 mb-8">
             {features.slice(0, 2).map((feature, index) => (
               <div
@@ -361,8 +400,8 @@ const AboutSection = () => {
         </div>
 
         {/* Call to Action Section */}
-        <div className="mt-20 text-center animate-fade-in-up">
-          <div className="bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 rounded-3xl p-12 shadow-2xl max-w-3xl mx-auto">
+        <div className="mt-12 md:mt-14 text-center animate-fade-in-up">
+          <div className="bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 rounded-none w-full p-12 shadow-2xl">
             <h3 className="text-4xl font-bold text-white mb-4 md:text-4xl text-2xl font-bold text-white mb-4">Join Our Learning Community</h3>
             <p className="text-xl text-white/90 mb-8 md:text-xl text-base text-white/90 mb-8">Experience the Minervaa difference. Schedule a visit to see our facilities and meet our dedicated team.</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

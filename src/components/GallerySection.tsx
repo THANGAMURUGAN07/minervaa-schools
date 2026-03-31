@@ -105,15 +105,15 @@ const HappeningsSection = () => {
   ];
 
   return (
-    <section id="happenings" className="relative overflow-hidden py-20">
+    <section id="happenings" className="relative overflow-hidden py-14 md:py-16">
       <ParticlesBackground />
       <div className="relative z-10 max-w-[95rem] mx-auto px-2 sm:px-3 lg:px-4">
-        <div className="text-center mb-12">
+        <div className="text-center mb-8 md:mb-10">
           <h2 className="text-5xl font-bold mb-6" style={{ color: '#1E3F8A' }}>Happenings</h2>
           <p className="text-xl text-gray-600">Every moment at Minervaa is a memory of learning and celebration.</p>
         </div>
 
-        <div className="flex justify-center mb-12">
+        <div className="flex justify-center mb-8 md:mb-10">
           <div className="bg-white rounded-full p-2 shadow-lg">
             <button
               onClick={() => setActiveTab('images')}
@@ -152,7 +152,7 @@ const HappeningsSection = () => {
                 rel={event.driveLink ? "noopener noreferrer" : undefined}
                 className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 flex flex-col"
               >
-                <div className="relative h-48 overflow-hidden">
+                <div className="relative h-64 overflow-hidden">
                   <img
                     src={resolveImageUrl(event.thumbnail)}
                     alt={event.title}
@@ -171,7 +171,7 @@ const HappeningsSection = () => {
         )}
 
         {activeTab === 'videos' && (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {videos.map((video, index) => (
               <div
                 key={index}

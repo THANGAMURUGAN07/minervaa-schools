@@ -49,10 +49,10 @@ const AcademicsSection = () => {
   };
 
   return (
-    <section id="academics" className="relative overflow-hidden py-20">
+    <section id="academics" className="relative overflow-hidden pt-0 mt-0 py-14 md:py-16">
       <ParticlesBackground />
       <div className="relative z-10 max-w-[95rem] mx-auto px-2 sm:px-3 lg:px-4">
-        <div className="text-center mb-16">
+        <div className="text-center mb-10 md:mb-12">
           <h2 className="text-5xl font-bold mb-6" style={{ color: '#1E3F8A' }}>Our Educational Programs</h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             We provide comprehensive education for play school, pre school and primary school students with age-appropriate learning programs.
@@ -114,8 +114,8 @@ const AcademicsSection = () => {
           </div>
         </div>
 
-        <section className="mt-20 lg:mt-24">
-          <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+        <section className="mt-0 lg:mt-0">
+          <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 items-center">
             <div>
               <p className="uppercase tracking-[0.2em] text-sm font-semibold text-emerald-600 mb-3">Montessori Learning</p>
               <h3 className="text-4xl md:text-5xl font-extrabold leading-tight mb-5" style={{ color: '#1E3F8A' }}>
@@ -148,24 +148,19 @@ const AcademicsSection = () => {
               </ul>
             </div>
 
-            <div className="relative min-h-[420px]">
+            <div className="flex justify-center items-center min-h-[320px]">
               <img
                 src="/webp/montessorylearning1.webp"
-                alt="Montessori hands-on classroom learning"
-                className="absolute top-0 left-0 w-[78%] h-[270px] md:h-[300px] object-cover rounded-[2rem] shadow-2xl rotate-[-3deg]"
-              />
-              <img
-                src="/webp/montessorylearning2.webp"
                 alt="Children engaged in Montessori activities"
-                className="absolute bottom-0 right-0 w-[78%] h-[270px] md:h-[300px] object-cover rounded-[2rem] shadow-2xl rotate-[4deg]"
+                className="w-[88%] h-[300px] md:h-[340px] object-cover rounded-[2rem] shadow-2xl object-center"
+                style={{ transform: 'none' }}
               />
-              <div className="absolute inset-0 -z-10 bg-gradient-to-br from-emerald-100/60 via-cyan-100/40 to-yellow-100/60 blur-2xl" />
             </div>
           </div>
         </section>
 
-        <section className="mt-20 lg:mt-24">
-          <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+        <section className="mt-12 lg:mt-14">
+          <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 items-center">
             <div>
               <p className="uppercase tracking-[0.2em] text-sm font-semibold text-sky-600 mb-3">Global Learning Pathway</p>
               <h3 className="text-4xl md:text-5xl font-extrabold leading-tight mb-5" style={{ color: '#1E3F8A' }}>
@@ -182,17 +177,14 @@ const AcademicsSection = () => {
             </div>
 
             <div className="relative min-h-[420px]">
-              <img
-                src="/webp/globe.webp"
-                alt="Global perspective learning"
-                className="absolute top-0 left-0 w-[78%] h-[270px] md:h-[300px] object-cover rounded-[2rem] shadow-2xl rotate-[-3deg]"
-              />
-              <img
-                src="/webp/horse.png"
-                alt="Horse riding activity"
-                className="absolute bottom-0 right-0 w-[78%] h-[270px] md:h-[300px] object-cover rounded-[2rem] shadow-2xl rotate-[4deg]"
-              />
-              <div className="absolute inset-0 -z-10 bg-gradient-to-br from-sky-100/60 via-blue-100/40 to-amber-100/60 blur-2xl" />
+              <div className="flex justify-center items-center min-h-[320px]">
+                <img
+                  src="/webp/globe.webp"
+                  alt="Horse riding activity"
+                  className="w-[88%] h-[300px] md:h-[340px] object-cover rounded-[2rem] shadow-2xl object-center"
+                  style={{ transform: 'none' }}
+                />
+              </div>
             </div>
           </div>
         </section>
