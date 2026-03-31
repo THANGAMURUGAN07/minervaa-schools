@@ -58,12 +58,12 @@ const Navigation = () => {
       }`}
     >
       <div className="max-w-[95rem] mx-auto px-2 sm:px-3 lg:px-4">
-        <div className="flex justify-between items-center h-20">
+        <div className="flex justify-between items-center h-24 sm:h-28">
           <div className="flex items-center space-x-3">
             <img
               src={getPublicAssetUrl('/webp/logo.webp')}
               alt="Minervaa Vidhya Mandhir logo"
-              className="h-14 w-auto object-contain flex-shrink-0"
+              className="h-20 sm:h-24 w-auto object-contain flex-shrink-0 transition-all duration-300"
             />
           </div>
 

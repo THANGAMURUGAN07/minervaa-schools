@@ -274,7 +274,6 @@ const AdmissionPopup = () => {
                   <X size={18} />
                 </button>
                 <h3 className="text-center text-2xl font-bold">Admission Enquiry Form</h3>
-                <p className="text-center text-sm text-blue-100">Minervaa Vidhya Mandhir School</p>
               </div>
 
               {showThankYou ? (

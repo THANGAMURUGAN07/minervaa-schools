@@ -31,7 +31,7 @@ const Footer = () => {
               <img
                 src={getPublicAssetUrl('/webp/logo.webp')}
                 alt="Minervaa Vidhya Mandhir logo"
-                className="h-16 w-auto object-contain"
+                className="h-24 sm:h-28 w-auto object-contain transition-all duration-300"
               />
             </div>
             <p className="text-gray-300 leading-relaxed mb-6">
