@@ -150,13 +150,13 @@ const HappeningsSection = () => {
                 href={event.driveLink || '#'}
                 target={event.driveLink ? "_blank" : undefined}
                 rel={event.driveLink ? "noopener noreferrer" : undefined}
-                className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 flex flex-col"
+                className="bg-white overflow-hidden shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 flex flex-col"
               >
                 <div className="relative h-64 overflow-hidden">
                   <img
                     src={resolveImageUrl(event.thumbnail)}
                     alt={event.title}
-                    className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+                    className="w-full h-full object-cover hover:scale-110 transition-transform duration-300 border-none rounded-none"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                   <div className="absolute bottom-4 left-4">
@@ -176,13 +176,13 @@ const HappeningsSection = () => {
               <div
                 key={index}
                 onClick={() => setSelectedVideo(video.videoId)}
-                className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 cursor-pointer group"
+                className="bg-white overflow-hidden shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 cursor-pointer group"
               >
                 <div className="relative h-48 overflow-hidden">
                   <img
                     src={`https://img.youtube.com/vi/${video.videoId}/hqdefault.jpg`}
                     alt={video.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300 border-none rounded-none"
                   />
                   <div className="absolute inset-0 bg-black/35 flex items-center justify-center">
                     <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">

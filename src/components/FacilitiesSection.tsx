@@ -203,7 +203,7 @@ const AnimatedFacilityCard = ({ facility, index }: { facility: Facility; index: 
 										<img
 											src={resolveImageUrl(facility.viewAllImage || facility.image)}
 											alt={facility.title}
-											className="rounded-2xl w-full object-cover shadow-lg"
+											className="rounded-none w-full object-cover shadow-lg"
 											loading="lazy"
 											decoding="async"
 										/>
@@ -231,7 +231,7 @@ const AnimatedFacilityCard = ({ facility, index }: { facility: Facility; index: 
 										<img
 											src={resolveImageUrl(facility.viewAllImage || facility.image)}
 											alt={facility.title}
-											className="rounded-2xl w-full object-cover shadow-lg"
+											className="rounded-none w-full object-cover shadow-lg"
 											loading="lazy"
 											decoding="async"
 										/>
@@ -264,7 +264,7 @@ const renderFacilityDetails = (facility: Facility) => (
 							<img
 								src={resolveImageUrl(lab.image)}
 								alt={lab.title}
-								className="w-full md:w-[48%] h-56 sm:h-64 md:h-72 rounded-xl object-cover"
+								className="w-full md:w-[48%] h-56 sm:h-64 md:h-72 rounded-none object-cover"
 								loading="lazy"
 								decoding="async"
 							/>

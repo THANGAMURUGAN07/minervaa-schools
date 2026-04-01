@@ -196,7 +196,7 @@ const AboutSection = () => {
                   }
                 }}
                 alt="Founder and Correspondent Suganthi Jambulingam"
-                className="w-full max-w-[280px] object-cover"
+                className="w-full max-w-[280px] object-cover rounded-none"
               />
               <div className="mt-5 max-w-[320px] text-gray-700 leading-relaxed text-left">
                 <p className="font-bold text-[#1E3F8A]">Founder & Correspondent</p>
@@ -261,7 +261,7 @@ const AboutSection = () => {
           </p>
 
           <div className="grid gap-6 md:gap-8 md:grid-cols-2">
-            <div className="relative overflow-hidden rounded-2xl border border-blue-100 min-h-[320px]">
+            <div className="relative overflow-hidden rounded-none border border-blue-100 min-h-[320px]">
               <div
                 className="absolute inset-0 bg-cover bg-center"
                 style={{ backgroundImage: `url(${visionBackground})` }}
@@ -284,7 +284,7 @@ const AboutSection = () => {
               </div>
             </div>
 
-            <div className="relative overflow-hidden rounded-2xl border border-blue-100 min-h-[320px]">
+            <div className="relative overflow-hidden rounded-none border border-blue-100 min-h-[320px]">
               <div
                 className="absolute inset-0 bg-cover bg-center"
                 style={{ backgroundImage: `url(${missionBackground})` }}
@@ -310,13 +310,13 @@ const AboutSection = () => {
           {stats.map((stat, index) => (
             <div
               key={index}
-              className="relative group rounded-2xl overflow-hidden p-0 h-48 sm:h-56 flex items-stretch"
+              className="relative group rounded-none overflow-hidden p-0 h-48 sm:h-56 flex items-stretch"
               style={{ backgroundImage: `url('${stat.image}')`, backgroundSize: 'cover', backgroundPosition: 'center' }}
             >
               {/* Overlay for readability */}
               <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-colors duration-300 z-0" />
               <div className="relative z-10 flex flex-col justify-center items-center w-full h-full p-6">
-                <div className="bg-white/90 text-[#1E3F8A] w-16 h-16 rounded-xl flex items-center justify-center mb-4 shadow-lg">{stat.icon}</div>
+                <div className="bg-white/90 text-[#1E3F8A] w-16 h-16 rounded-none flex items-center justify-center mb-4 shadow-lg">{stat.icon}</div>
                 <div className="text-4xl font-bold text-white text-center mb-2 drop-shadow-lg">
                   {stat.value}{stat.suffix}
                 </div>
@@ -332,14 +332,14 @@ const AboutSection = () => {
             {features.slice(0, 2).map((feature, index) => (
               <div
                 key={`top-${index}-${feature.title}`}
-                className={`relative overflow-hidden rounded-2xl border border-white/70 bg-gradient-to-br ${feature.soft} p-8 shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-500 group`}
+                className={`relative overflow-hidden rounded-none border border-white/70 bg-gradient-to-br ${feature.soft} p-8 shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-500 group`}
               >
                 <div className={`absolute inset-0 bg-gradient-to-r ${feature.color} scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-700 ease-out`} />
                 <div className="absolute inset-0 bg-white/92 group-hover:bg-white/0 transition-colors duration-700" />
 
                 <div className="relative z-10">
                   <div className="flex items-center gap-4 mb-5">
-                    <div className={`bg-gradient-to-br ${feature.color} text-white w-16 h-16 rounded-xl flex items-center justify-center transition-transform duration-700 group-hover:rotate-[360deg]`}>
+                    <div className={`bg-gradient-to-br ${feature.color} text-white w-16 h-16 rounded-none flex items-center justify-center transition-transform duration-700 group-hover:rotate-[360deg]`}>
                       {feature.icon}
                     </div>
                     <div>
@@ -367,14 +367,14 @@ const AboutSection = () => {
             {features.slice(2).map((feature, index) => (
               <div
                 key={`bottom-${index}-${feature.title}`}
-                className={`relative overflow-hidden rounded-2xl border border-white/70 bg-gradient-to-br ${feature.soft} p-8 shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-500 group`}
+                className={`relative overflow-hidden rounded-none border border-white/70 bg-gradient-to-br ${feature.soft} p-8 shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-500 group`}
               >
                 <div className={`absolute inset-0 bg-gradient-to-r ${feature.color} scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-700 ease-out`} />
                 <div className="absolute inset-0 bg-white/92 group-hover:bg-white/0 transition-colors duration-700" />
 
                 <div className="relative z-10">
                   <div className="flex items-center gap-4 mb-5">
-                    <div className={`bg-gradient-to-br ${feature.color} text-white w-16 h-16 rounded-xl flex items-center justify-center transition-transform duration-700 group-hover:rotate-[360deg]`}>
+                    <div className={`bg-gradient-to-br ${feature.color} text-white w-16 h-16 rounded-none flex items-center justify-center transition-transform duration-700 group-hover:rotate-[360deg]`}>
                       {feature.icon}
                     </div>
                     <div>
